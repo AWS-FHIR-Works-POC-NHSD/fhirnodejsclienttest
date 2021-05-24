@@ -22,3 +22,7 @@ $ node app.js
 or 
 
 $ nodemon app.js
+
+5) access it via web browser 
+
+http://localhost:3000/
