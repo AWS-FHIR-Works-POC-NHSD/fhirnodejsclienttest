@@ -10,10 +10,10 @@ $ npm install
 
 3) configure it
 
-HOSTNAME=https://www.example.com
-PORT=443
-XAPIKEY=<key value, e.g. AWS FHIR Works developer key>
-AUTH_TOKEN=<oauth token>
+HOSTNAME=https://www.example.com<br>
+PORT=443<br>
+XAPIKEY=<key value, e.g. AWS FHIR Works developer key><br>
+AUTH_TOKEN=<oauth token><br>
 
 4) run it
 
