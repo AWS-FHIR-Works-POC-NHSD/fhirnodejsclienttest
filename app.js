@@ -30,6 +30,28 @@ app.get("/", function(req, res){
 app.post("/postvacc", function(req, res){
 	console.log(req.body);
 
+ var vaccineProduct = req.body.vaccine;
+
+ if (vaccineProduct == "astrazeneca")
+ { 
+  vaccineProductCode = "39114911000001105";
+  vaccineProductDescription = "COVID-19 Vaccine AstraZeneca (ChAdOx1 S [recombinant]) 5x10,000,000,000 viral particles/0.5ml dose solution for injection multidose vials (AstraZeneca)";
+} 
+ if (vaccineProduct == "pfizer")
+ { 
+  vaccineProductCode = "39115611000001103";
+  vaccineProductDescription = "COVID-19 mRNA Vaccine Pfizer-BioNTech BNT162b2 30micrograms/0.3ml dose concentrate for suspension for injection multidose vials (Pfizer Ltd)";
+} 
+ if (vaccineProduct == "moderna")
+ { 
+  vaccineProductCode = "39326911000001101";
+  vaccineProductDescription = "COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for injection multidose vials (Moderna, Inc)";
+} 
+
+ console.log("THE VACCINE CHOSEN IN UI IS " + vaccineProduct);
+ console.log("vaccineProductCode " + vaccineProductCode);
+ console.log("vaccineProductDescription " + vaccineProductDescription);
+
 const createVacc = async () => {
     try {
         const res = await axios.post('/dev/Immunization', 
@@ -62,8 +84,8 @@ const createVacc = async () => {
   "coding": [
    {
      "system": "http://snomed.info/sct",
-     "code": "39326911000001101",
-     "display": "COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for injection multidose vials (Moderna, Inc)"
+     "code": vaccineProductCode,
+     "display": vaccineProductDescription
 }
 ]
 },
@@ -164,6 +186,24 @@ createVacc();
 
 	res.redirect("/");
 });
+
+
+app.get("/getvacc", function(req, res){
+  console.log(req.body);
+
+const getvacc = async () => {
+    try {
+        const res = await axios.get('/Dev/Immunization/848c4e2e-2cc9-4d08-a8da-73e508c691e8');
+        console.log(res.data);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+getvacc();
+  res.redirect("/");
+});
+
 
 
 app.listen(port, () => console.log("Server listening on port " + port ));

@@ -3,9 +3,25 @@
 <form action="/postvacc" method="POST">
   <label for="nhsnumber">NHS Number</label><br>
   <input type="text" name="nhsnumber" placeholder="9297864864"><br>
+
+  <input type="radio" id="pfizer" name="vaccine" value="pfizer">
+  <label for="pfizer">Pfizer</label>
+
+  <input type="radio" id="astrazeneca" name="vaccine" value="astrazeneca">
+  <label for="astrazeneca">Astrazeneca</label>
+
+  <input type="radio" id="moderna" name="vaccine" value="moderna">
+  <label for="moderna">Moderna</label><br>
+
+  <button>Publish a vacc</button>
+</form>
+
+<form action="/getvacc" method="GET">
+  <label for="nhsnumber">NHS Number</label><br>
+  <input type="text" name="nhsnumber" placeholder="9297864864"><br>
   <input type="radio" id="pfizer" name="vaccine" value="pfizer">
   <label for="pfizer">Pfizer</label>
   <input type="radio" id="astrazeneca" name="vaccine" value="astrazeneca">
   <label for="astrazeneca">Astrazeneca</label><br>
-  <button>Publish a vacc</button>
+  <button>Read a vaccine</button>
 </form>
