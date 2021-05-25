@@ -1,0 +1,21 @@
+<%- include('partials/header'); -%>
+
+<H1>POST (Create) a vacc</H1>
+
+<form action="/postvacc" method="POST">
+  <label for="nhsnumber">NHS Number</label><br>
+  <input type="text" name="nhsnumber" placeholder="9297864864"><br><br>
+
+  <input type="radio" id="pfizer" name="vaccine" value="pfizer">
+  <label for="pfizer">Pfizer</label>
+
+  <input type="radio" id="astrazeneca" name="vaccine" value="astrazeneca">
+  <label for="astrazeneca">Astrazeneca</label>
+
+  <input type="radio" id="moderna" name="vaccine" value="moderna">
+  <label for="moderna">Moderna</label><br><br>
+
+  <button>Publish a vacc</button>
+</form>
+
+<%- include('partials/footer'); -%>

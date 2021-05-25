@@ -7,8 +7,8 @@ const axios = require('axios');
 
 require('dotenv').config()
 
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
-
 app.set("view engine","ejs");
 
 // Load environment variables from .env
@@ -21,10 +21,18 @@ axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-
 app.get("/", function(req, res){
-	res.render("home");
+  res.render("home");
 });
+
+app.get("/post", function(req, res){
+	res.render("post");
+});
+
+app.get("/get", function(req, res){
+  res.render("get");
+});
+
 
 
 app.post("/postvacc", function(req, res){
@@ -181,29 +189,30 @@ const createVacc = async () => {
     }
 };
 
-
 createVacc();
 
-	res.redirect("/");
+	res.redirect("/post");
 });
 
 
 app.get("/getvacc", function(req, res){
-  console.log(req.body);
 
 const getvacc = async () => {
     try {
-        const res = await axios.get('/Dev/Immunization/848c4e2e-2cc9-4d08-a8da-73e508c691e8');
+        var immunization_id = req.query.immunizationid;
+        console.log("The Immunization_Id is " + immunization_id );
+        const res = await axios.get('/dev/Immunization/' + immunization_id );
         console.log(res.data);
     } catch (err) {
         console.error(err);
     }
 };
 
-getvacc();
-  res.redirect("/");
+ getvacc();
+
+ //res.redirect("/getvacc");
+      res.render("get");
 });
 
-
-
+ 
 app.listen(port, () => console.log("Server listening on port " + port ));
