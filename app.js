@@ -206,11 +206,10 @@ const createVacc = async () => {
     } catch (err) {
         console.error(err);
     }
+        res.render("postcreated", { newVaccId : global.newVaccId } );
 };
 
 createVacc();
-
-  res.render("postcreated", { newVaccId : global.newVaccId } );
 
 });
 
@@ -256,5 +255,25 @@ app.delete('/delete', (req, res) => {
   res.redirect('/comments')
   */
 })
+
+app.get("/deletevacc", function(req, res){
+
+const deletevacc = async () => {
+    try {
+        var immunization_id = req.query.immunizationid;
+        console.log("The Immunization_Id is " + immunization_id );
+        const res = await axios.delete('/dev/Immunization/' + immunization_id );
+        console.log(res.data);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+ deletevacc();
+
+res.render("deletevacc", { newVaccId : global.newVaccId } );
+  //res.render("deletevacc", { newVaccId : global.newVaccId } );
+
+});
 
 app.listen(port, () => console.log("Server listening on port " + port ));
