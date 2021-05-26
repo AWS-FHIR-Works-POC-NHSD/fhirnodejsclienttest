@@ -183,7 +183,9 @@ const createVacc = async () => {
   ]
 }
           );
-        console.log(res.data);
+        //console.log(res.data);
+        global.newVaccId = res.data.id;
+        console.log("newVaccId = " + global.newVaccId);
     } catch (err) {
         console.error(err);
     }
@@ -191,9 +193,15 @@ const createVacc = async () => {
 
 createVacc();
 
-	res.redirect("/post");
+  res.render("postcreated", { newVaccId : global.newVaccId } );
+
 });
 
+
+app.get("/postcreated", function(req, res){
+  console.log(req.body);
+  res.render("postcreated");
+});
 
 app.get("/getvacc", function(req, res){
 
@@ -211,7 +219,7 @@ const getvacc = async () => {
  getvacc();
 
  //res.redirect("/getvacc");
-      res.render("get");
+ res.render("get");
 });
 
  
