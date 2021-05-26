@@ -2,8 +2,9 @@ var express = require("express");
 var app = express();
 var port = 3000;
 var bodyParser = require("body-parser")
-const https = require('https')
+//const https = require('https')
 const axios = require('axios');
+const {v4 : uuidv4} = require('uuid')
 
 require('dotenv').config()
 
@@ -56,9 +57,12 @@ app.post("/postvacc", function(req, res){
   vaccineProductDescription = "COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for injection multidose vials (Moderna, Inc)";
 } 
 
+var uuid = uuidv4();
+
  console.log("THE VACCINE CHOSEN IN UI IS " + vaccineProduct);
  console.log("vaccineProductCode " + vaccineProductCode);
  console.log("vaccineProductDescription " + vaccineProductDescription);
+ console.log("indentifier UUID " + uuid);
 
 const createVacc = async () => {
     try {
@@ -84,7 +88,7 @@ const createVacc = async () => {
   "identifier": [
     {
       "system": "https://supplierABC/identifiers/vacc",
-      "value": "7718dda1-b5ff-4192-b441-273d9639643a"
+      "value": uuid
     }
   ],
   "status": "completed",
