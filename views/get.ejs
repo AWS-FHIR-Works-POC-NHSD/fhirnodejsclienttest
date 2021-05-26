@@ -3,9 +3,16 @@
 <H2>GET an existing vaccination record</H2>
 
 <form action="/getvacc" method="GET">
-  <input type="text" name="immunizationid">
+  <input type="text" name="immunizationid" value="e740bbca-40c1-41c5-bc66-a4c83dbf4803">
   <label for="immunizationid">Immunization</label><br><br>
   <button class="btn btn-info">Get vaccination</button>
 </form>
+
+<p>
+<p>FHIR ID = <%= FHIRId %>
+<p>Vaccination procedure code = <%= vaccineProcedureCode %>
+<p>Vaccination procedure description = <%= vaccineProcedureDescription %>
+<p>Vaccination product code = <%= vaccineProductCode %>
+<p>Vaccination product description = <%= vaccineProductDescription %>
 
 <%- include('partials/footer'); -%>

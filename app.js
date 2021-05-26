@@ -34,8 +34,6 @@ app.get("/get", function(req, res){
   res.render("get");
 });
 
-
-
 app.post("/postvacc", function(req, res){
 	console.log(req.body);
 
@@ -219,14 +217,27 @@ app.get("/postcreated", function(req, res){
   res.render("postcreated");
 });
 
+        global.FHIRId                      = "";
+        global.vaccineProcedureCode        = "";
+        global.vaccineProcedureDescription = "";
+        global.vaccineProductCode          = "";
+        global.vaccineProductDescription   = "";
+
+
 app.get("/getvacc", function(req, res){
 
 const getvacc = async () => {
     try {
+        var immunization_id = "";
         var immunization_id = req.query.immunizationid;
         console.log("The Immunization_Id is " + immunization_id );
         const res = await axios.get('/dev/Immunization/' + immunization_id );
-        console.log(res.data);
+        //console.log(res.data);
+        global.FHIRId                      = res.data.id;
+        global.vaccineProcedureCode        = res.data.extension[0].valueCodeableConcept.coding[0].code;
+        global.vaccineProcedureDescription = res.data.extension[0].valueCodeableConcept.coding[0].display;
+        global.vaccineProductCode          = res.data.vaccineCode.coding[0].code;
+        global.vaccineProductDescription   = res.data.vaccineCode.coding[0].display;
     } catch (err) {
         console.error(err);
     }
@@ -235,7 +246,7 @@ const getvacc = async () => {
  getvacc();
 
  //res.redirect("/getvacc");
- res.render("get");
+ res.render("get", { vaccineProcedureDescription : global.vaccineProcedureDescription } );
 });
 
 app.get('/delete', (req, res) => {
