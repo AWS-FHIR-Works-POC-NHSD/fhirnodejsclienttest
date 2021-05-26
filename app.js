@@ -39,6 +39,19 @@ app.get("/get", function(req, res){
 app.post("/postvacc", function(req, res){
 	console.log(req.body);
 
+ var vaccineProcedure = req.body.vaccprocedure;
+
+if (vaccineProcedure == "dose1")
+ { 
+  vaccineProcedureCode = "1324681000000101";
+  vaccineProcedureDescription = "Administration of first dose of SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) vaccine";
+} 
+if (vaccineProcedure == "dose2")
+ { 
+  vaccineProcedureCode = "1324691000000104";
+  vaccineProcedureDescription = "Administration of second dose of SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) vaccine";
+} 
+
  var vaccineProduct = req.body.vaccine;
 
  if (vaccineProduct == "astrazeneca")
@@ -80,8 +93,8 @@ const createVacc = async () => {
         "valueCodeableConcept": {
           "coding": [ {
             "system": "http://snomed.info/sct",
-            "code": "1324681000000101",
-            "display": "Administration of first dose of SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) vaccine"
+            "code": vaccineProcedureCode,
+            "display": vaccineProcedureDescription
           } ]
         }
       } ],
@@ -226,5 +239,22 @@ const getvacc = async () => {
  res.render("get");
 });
 
- 
+app.get('/delete', (req, res) => {
+  res.render("delete");
+  /*
+  const {id} = req.params
+  comments = comments.filter(c => c.id !== id)
+  res.redirect('/comments')
+  */
+});
+
+app.delete('/delete', (req, res) => {
+  /*
+  res.render("delete");
+  const {id} = req.params
+  comments = comments.filter(c => c.id !== id)
+  res.redirect('/comments')
+  */
+})
+
 app.listen(port, () => console.log("Server listening on port " + port ));
