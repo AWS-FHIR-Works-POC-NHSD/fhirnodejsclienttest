@@ -1,6 +1,6 @@
 <%- include('partials/header'); -%>
 
-<H1>POST (Create) a vacc</H1>
+<H2>POST (Create) a new vaccination record</H2>
 
 <form action="/postvacc" method="POST">
   <label for="nhsnumber">NHS Number</label><br>
@@ -18,7 +18,7 @@
   <input type="radio" id="moderna" name="vaccine" value="moderna">
   <label for="moderna">Moderna</label><br><br>
 
-  <button>Publish a vacc</button>
+  <button class="btn btn-info">Publish a vacc</button>
 </form>
 
 <%- include('partials/footer'); -%>

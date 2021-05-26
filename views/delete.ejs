@@ -1,11 +1,11 @@
 <%- include('partials/header'); -%>
 
-<H1>DELETE a vacc</H1>
+<H2>DELETE an existing vaccination record</H2>
 
 <form action="/deletevacc" method="DELETE">
   <input type="text" name="immunizationid">
-  <label for="immunizationid">Immunization</label><br>
-  <input type="submit" value="submit">
+  <label for="immunizationid">Immunization</label><br><br>
+  <button class="btn btn-info">Delete vaccination</button>
 </form>
 
 <%- include('partials/footer'); -%>
