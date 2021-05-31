@@ -5,12 +5,17 @@ var bodyParser = require("body-parser")
 //const https = require('https')
 const axios = require('axios');
 const {v4 : uuidv4} = require('uuid')
+var createError = require('http-errors');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+
+var homeRouter = require('./routes/home');
+var getRouter  = require('./routes/get');
+var postRouter  = require('./routes/post');
+var deleteRouter  = require('./routes/delete');
 
 require('dotenv').config()
-
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true}));
-app.set("view engine","ejs");
 
 // Load environment variables from .env
 var dotenv = require('dotenv');
@@ -22,17 +27,39 @@ axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-app.get("/", function(req, res){
-  res.render("home");
+// view engine setup
+//app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended: true}));
+app.set("view engine","ejs");
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', homeRouter);
+app.use('/get', getRouter);
+app.use('/post', postRouter);
+app.use('/delete', deleteRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get("/post", function(req, res){
-	res.render("post");
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
-app.get("/get", function(req, res){
-  res.render("get");
-});
+module.exports = app;
 
 app.post("/postvacc", function(req, res){
 	console.log(req.body);
@@ -247,15 +274,6 @@ const getvacc = async () => {
 
  //res.redirect("/getvacc");
  res.render("get", { vaccineProcedureDescription : global.vaccineProcedureDescription } );
-});
-
-app.get('/delete', (req, res) => {
-  res.render("delete");
-  /*
-  const {id} = req.params
-  comments = comments.filter(c => c.id !== id)
-  res.redirect('/comments')
-  */
 });
 
 app.delete('/delete', (req, res) => {
