@@ -9,12 +9,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 
-var homeRouter = require('./routes/home');
-var getRouter  = require('./routes/get');
-var getvaccRouter  = require('./routes/getvacc');
-var postRouter  = require('./routes/post');
-var postvaccRouter  = require('./routes/postvacc');
-var deleteRouter  = require('./routes/delete');
+var homeRouter        = require('./routes/home');
+var getRouter         = require('./routes/get');
+var getvaccRouter     = require('./routes/getvacc');
+var postRouter        = require('./routes/post');
+var postvaccRouter    = require('./routes/postvacc');
+var deleteRouter      = require('./routes/delete');
+var deletevaccRouter  = require('./routes/deletevacc');
 
 require('dotenv').config()
 
@@ -40,6 +41,7 @@ app.use('/getvacc', getvaccRouter);
 app.use('/post', postRouter);
 app.use('/postvacc', postvaccRouter);
 app.use('/delete', deleteRouter);
+app.use('/deletevacc', deletevaccRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,68 +61,12 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
+/*
         global.FHIRId                      = "";
         global.vaccineProcedureCode        = "";
         global.vaccineProcedureDescription = "";
         global.vaccineProductCode          = "";
         global.vaccineProductDescription   = "";
-
-/*
-app.get("/getvacc", function(req, res){
-
-        console.log("Inside /getvacc!");
-
-const getvacc = async () => {
-    try {
-        var immunization_id = "";
-        var immunization_id = req.query.immunizationid;
-        console.log("The Immunization_Id is " + immunization_id );
-        const res = await axios.get('/dev/Immunization/' + immunization_id );
-        //console.log(res.data);
-        global.FHIRId                      = res.data.id;
-        global.vaccineProcedureCode        = res.data.extension[0].valueCodeableConcept.coding[0].code;
-        global.vaccineProcedureDescription = res.data.extension[0].valueCodeableConcept.coding[0].display;
-        global.vaccineProductCode          = res.data.vaccineCode.coding[0].code;
-        global.vaccineProductDescription   = res.data.vaccineCode.coding[0].display;
-    } catch (err) {
-        console.error(err);
-    }
-};
-
- getvacc();
-
- //res.redirect("/getvacc");
- res.render("get", { vaccineProcedureDescription : global.vaccineProcedureDescription } );
-});
 */
-
-app.delete('/delete', (req, res) => {
-  /*
-  res.render("delete");
-  const {id} = req.params
-  comments = comments.filter(c => c.id !== id)
-  res.redirect('/comments')
-  */
-})
-
-app.get("/deletevacc", function(req, res){
-
-const deletevacc = async () => {
-    try {
-        var immunization_id = req.query.immunizationid;
-        console.log("The Immunization_Id is " + immunization_id );
-        const res = await axios.delete('/dev/Immunization/' + immunization_id );
-        console.log(res.data);
-    } catch (err) {
-        console.error(err);
-    }
-};
-
- deletevacc();
-
-  res.render("deletevacc", { newVaccId : global.newVaccId } );
-  //res.render("deletevacc", { newVaccId : global.newVaccId } );
-
-});
 
 app.listen(port, () => console.log("Server listening on port " + port ));

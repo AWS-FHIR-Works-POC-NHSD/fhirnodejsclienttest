@@ -44,7 +44,7 @@ axios.get('/dev/Immunization/' + immunization_id )
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,
       vaccineProductDescription : vaccineProductDescription
-    });
+    })
   })
   .catch(function (error) {
     // handle error
