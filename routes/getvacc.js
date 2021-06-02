@@ -17,29 +17,43 @@ router.get('/', function(req, res, next) {
 
 console.log("Inside /getvacc!");
 
-const getvacc = async () => {
-    try {
-        var immunization_id = "";
-        var immunization_id = req.query.immunizationid;
-        console.log("The Immunization_Id is " + immunization_id );
-        const res = await axios.get('/dev/Immunization/' + immunization_id );
-        //console.log(res.data);
-        global.FHIRId                      = res.data.id;
-        global.vaccineProcedureCode        = res.data.extension[0].valueCodeableConcept.coding[0].code;
-        global.vaccineProcedureDescription = res.data.extension[0].valueCodeableConcept.coding[0].display;
-        global.vaccineProductCode          = res.data.vaccineCode.coding[0].code;
-        global.vaccineProductDescription   = res.data.vaccineCode.coding[0].display;
-    } catch (err) {
-        console.error(err);
-    }
-};
+//var immunization_id = "";
+var immunization_id = req.query.immunizationid;
+console.log("The Immunization_Id is " + immunization_id );
 
- getvacc();
+axios.get('/dev/Immunization/' + immunization_id )
+  .then(function (response) {
+    // handle success
+    //console.log(response);
+    var FHIRId = response.data.id;
+    var vaccineProcedureCode = response.data.extension[0].valueCodeableConcept.coding[0].code;
+    var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
+    var vaccineProductCode          = response.data.vaccineCode.coding[0].code;
+    var vaccineProductDescription   = response.data.vaccineCode.coding[0].display;
+    /*
+    console.log("FHIRId=" + FHIRId);
+    console.log("vaccineProcedureCode=" + vaccineProcedureCode);
+    console.log("vaccineProcedureDescription=" + vaccineProcedureDescription);
+    console.log("vaccineProductCode=" + vaccineProcedureCode);
+    console.log("vaccineProductDescription=" + vaccineProcedureDescription);
+    */
+    
+    res.render("get", { 
+      FHIRId : FHIRId,
+      vaccineProcedureCode : vaccineProcedureCode,
+      vaccineProcedureDescription : vaccineProcedureDescription,
+      vaccineProductCode : vaccineProductCode,
+      vaccineProductDescription : vaccineProductDescription
+    });
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
 
- //res.redirect("/getvacc");
- res.render("get", { vaccineProcedureDescription : global.vaccineProcedureDescription } );
-
-  //res.render("get");
 });
 
 module.exports = router;
