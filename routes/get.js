@@ -3,6 +3,7 @@ var router = express.Router();
 
 /* GET vacc page. */
 router.get('/', function(req, res, next) {
+  console.log("Running get.js")
   res.render("get");
   //res.render('index', { title: 'Express' });
 });
