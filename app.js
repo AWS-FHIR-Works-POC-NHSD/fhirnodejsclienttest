@@ -61,12 +61,4 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-/*
-        global.FHIRId                      = "";
-        global.vaccineProcedureCode        = "";
-        global.vaccineProcedureDescription = "";
-        global.vaccineProductCode          = "";
-        global.vaccineProductDescription   = "";
-*/
-
 app.listen(port, () => console.log("Server listening on port " + port ));

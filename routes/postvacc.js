@@ -21,7 +21,11 @@ router.post('/', function(req, res, next) {
   console.log("Running postvacc.js")
   console.log(req.body);
 
+ var nhsnumber        = req.body.nhsnumber;
  var vaccineProcedure = req.body.vaccprocedure;
+ var date             = req.body.date + "T00:00:00.000+00:00";
+ var expirationDate   = req.body.expirydate;
+ var lotNumber        = req.body.batchnumber;
 
 if (vaccineProcedure == "dose1")
  { 
@@ -100,7 +104,7 @@ axios.post('/dev/Immunization',
   "encounter": {
     "reference": "Encounter/example"
   },
-  "occurrenceDateTime": "2021-02-23T13:00:08.476+00:00",
+  "occurrenceDateTime": date,
   "primarySource": true,
   "location": {
     "reference": "Location/1"
@@ -108,8 +112,8 @@ axios.post('/dev/Immunization',
   "manufacturer": {
     "reference": "Organization/hl7"
   },
-  "lotNumber": "AAJN11K",
-  "expirationDate": "2021-06-23",
+  "lotNumber": lotNumber,
+  "expirationDate": expirationDate,
   "site": {
     "coding": [
       {

@@ -2,9 +2,14 @@
 
 <H2>GET an existing vaccination record</H2>
 
-<form action="/getvacc" method="GET">
-  <input type="text" name="immunizationid">
-  <label for="immunizationid">Immunization</label><br><br>
+<form class="form-horizontal" action="/getvacc" method="GET">
+  <div class="form-group">
+    <div class="col-sm-5">
+      <label class="control-label col-sm-5" for="immunizationid">Immunization FHIR resource ID</label>
+      <input type="text" class="form-control" name="immunizationid">
+   </div>   
+  </div>
+  <br><br>
   <button class="btn btn-info">Get vaccination</button>
 </form>
 
