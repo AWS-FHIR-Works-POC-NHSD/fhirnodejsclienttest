@@ -21,7 +21,7 @@ console.log("Inside /getvacc!");
 var immunization_id = req.query.immunizationid;
 console.log("The Immunization_Id is " + immunization_id );
 
-axios.get('/dev/Immunization/' + immunization_id )
+axios.get('/Immunization/' + immunization_id )
   .then(function (response) {
     // handle success
     //console.log(response);
@@ -48,7 +48,7 @@ axios.get('/dev/Immunization/' + immunization_id )
   })
   .catch(function (error) {
     // handle error
-    console.log(error);
+    //console.log(error);
   })
   .then(function () {
     // always executed

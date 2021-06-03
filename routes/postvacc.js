@@ -64,7 +64,7 @@ var uuid = uuidv4();
  console.log("identifier UUID " + uuid);
 
 
-axios.post('/dev/Immunization', 
+axios.post('/Immunization', 
 {
   "resourceType": "Immunization",
   "meta": {

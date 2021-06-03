@@ -21,7 +21,7 @@ console.log("Inside /deletevacc!");
 var immunization_id = req.query.immunizationid;
 console.log("The Immunization_Id is " + immunization_id );
 
-axios.delete('/dev/Immunization/' + immunization_id )
+axios.delete('Immunization/' + immunization_id )
   .then(function (response) {
     // handle success
     //console.log(response);
