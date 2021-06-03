@@ -10,13 +10,17 @@ router.get('/', function(req, res, next) {
     var vaccineProcedureDescription = "";
     var vaccineProductCode          = "";
     var vaccineProductDescription   = "";
+    var batchNumber                 = "";
+    var expirationDate              = "";
 
   res.render("get",{ 
       FHIRId : FHIRId,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,
-      vaccineProductDescription : vaccineProductDescription
+      vaccineProductDescription : vaccineProductDescription,
+      batchNumber : batchNumber,
+      expirationDate : expirationDate
   });
   
 });

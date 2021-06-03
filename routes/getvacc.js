@@ -25,6 +25,7 @@ axios.get('/Immunization/' + immunization_id )
   .then(function (response) {
     // handle success
     //console.log(response);
+
     var FHIRId = response.data.id;
     var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
     var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
