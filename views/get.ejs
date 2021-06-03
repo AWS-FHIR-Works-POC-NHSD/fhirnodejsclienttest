@@ -5,19 +5,68 @@
 <form class="form-horizontal" action="/getvacc" method="GET">
   <div class="form-group">
     <div class="col-sm-5">
-      <label class="control-label col-sm-5" for="immunizationid">Immunization FHIR resource ID</label>
+      <label class="control-label col-sm-9" for="immunizationid">Immunization FHIR resource ID</label>
       <input type="text" class="form-control" name="immunizationid">
    </div>   
   </div>
-  <br><br>
+  <br>
   <button class="btn btn-info">Get vaccination</button>
 </form>
 
-<p>
-<p>FHIR ID = <%= FHIRId %>
-<p>Vaccination procedure code = <%= vaccineProcedureCode %>
-<p>Vaccination procedure description = <%= vaccineProcedureDescription %>
-<p>Vaccination product code = <%= vaccineProductCode %>
-<p>Vaccination product description = <%= vaccineProductDescription %>
+<!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+<!--Font Awesome (added because you use icons in your prepend/append)-->
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+<div class="container">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FHIR resource id</td>
+        <td><%= FHIRId %></td>
+      </tr>
+      <tr>
+        <td>NHS Number</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Vaccination Procedure Code (SNOMED)</td>
+        <td><%= vaccineProcedureCode %></td>
+      </tr>
+      <tr>
+        <td>Vaccination Procedure Description</td>
+        <td><%= vaccineProcedureDescription %></td>
+      </tr>
+      <tr>
+        <td>Vaccine Product Code (SNOMED)</td>
+        <td><%= vaccineProductCode %></td>
+      </tr>
+      <tr>
+        <td>Vaccine Product Description</td>
+        <td><%= vaccineProductDescription %></td>
+      </tr>
+      <tr>
+        <td>Batch Number</td>
+        <td><%= batchNumber %></td>
+      </tr>
+      <tr>
+        <td>Expiry date (YYYY-MM-DD)</td>
+        <td><%= expirationDate %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
 <%- include('partials/footer'); -%>

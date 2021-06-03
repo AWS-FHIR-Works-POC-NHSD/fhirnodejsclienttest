@@ -26,10 +26,12 @@ axios.get('/Immunization/' + immunization_id )
     // handle success
     //console.log(response);
     var FHIRId = response.data.id;
-    var vaccineProcedureCode = response.data.extension[0].valueCodeableConcept.coding[0].code;
+    var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
     var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
     var vaccineProductCode          = response.data.vaccineCode.coding[0].code;
     var vaccineProductDescription   = response.data.vaccineCode.coding[0].display;
+    var batchNumber                 = response.data.lotNumber;
+    var expirationDate              = response.data.expirationDate;
     /*
     console.log("FHIRId=" + FHIRId);
     console.log("vaccineProcedureCode=" + vaccineProcedureCode);
@@ -43,7 +45,9 @@ axios.get('/Immunization/' + immunization_id )
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,
-      vaccineProductDescription : vaccineProductDescription
+      vaccineProductDescription : vaccineProductDescription,
+      batchNumber : batchNumber,
+      expirationDate : expirationDate
     })
   })
   .catch(function (error) {
