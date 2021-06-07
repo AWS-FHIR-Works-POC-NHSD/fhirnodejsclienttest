@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
   console.log("Running postvacc.js")
   console.log(req.body);
 
- var nhsnumber        = req.body.nhsnumber;
+ var nhsNumber        = req.body.nhsnumber;
  var vaccineProcedure = req.body.vaccprocedure;
  var date             = req.body.date + "T00:00:00.000+00:00";
  var expirationDate   = req.body.expirydate;
@@ -99,7 +99,12 @@ axios.post('/Immunization',
    ]
   },
   "patient": {
-    "reference": "Patient/example"
+    "reference": "Patient/1953684",
+    "type": "Patient",
+    "identifier": {
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": nhsNumber
+      }
   },
   "encounter": {
     "reference": "Encounter/example"

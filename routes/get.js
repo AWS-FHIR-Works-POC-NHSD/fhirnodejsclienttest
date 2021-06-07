@@ -6,6 +6,7 @@ router.get('/', function(req, res, next) {
   console.log("Running get.js");
 
     var FHIRId = "";
+    var nhsNumber = "";
     var vaccineProcedureCode = "";
     var vaccineProcedureDescription = "";
     var vaccineProductCode          = "";
@@ -15,6 +16,7 @@ router.get('/', function(req, res, next) {
 
   res.render("get",{ 
       FHIRId : FHIRId,
+      nhsNumber : nhsNumber,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,

@@ -26,7 +26,8 @@ axios.get('/Immunization/' + immunization_id )
     // handle success
     //console.log(response);
 
-    var FHIRId = response.data.id;
+    var FHIRId                      = response.data.id;
+    var nhsNumber                   = response.data.patient.identifier.value;
     var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
     var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
     var vaccineProductCode          = response.data.vaccineCode.coding[0].code;
@@ -43,6 +44,7 @@ axios.get('/Immunization/' + immunization_id )
     
     res.render("get", { 
       FHIRId : FHIRId,
+      nhsNumber : nhsNumber,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,
@@ -53,7 +55,7 @@ axios.get('/Immunization/' + immunization_id )
   })
   .catch(function (error) {
     // handle error
-    //console.log(error);
+    console.log(error);
   })
   .then(function () {
     // always executed
