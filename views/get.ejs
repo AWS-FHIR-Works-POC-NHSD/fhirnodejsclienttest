@@ -5,12 +5,23 @@
 <form class="form-horizontal" action="/getvacc" method="GET">
   <div class="form-group">
     <div class="col-sm-5">
-      <label class="control-label col-sm-9" for="immunizationid">Immunization FHIR resource ID</label>
-      <input type="text" class="form-control" name="immunizationid">
+      <label class="control-label col-sm-9" for="id">FHIR resource ID</label>
+      <input type="text" class="form-control" name="id">
    </div>   
   </div>
   <br>
   <button class="btn btn-info">Get vaccination</button>
+</form>
+
+<form class="form-horizontal" action="/update" method="GET">
+  <div class="form-group">
+    <div class="col-sm-5">
+      <label class="control-label col-sm-9" for="id">FHIR resource ID</label>
+      <input type="text" class="form-control" name="id">
+   </div>   
+  </div>
+  <br>
+  <button class="btn btn-info">Update vaccination</button>
 </form>
 
 <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
@@ -34,7 +45,11 @@
     <tbody>
       <tr>
         <td>FHIR resource id</td>
-        <td><%= FHIRId %></td>
+        <td><%= id %></td>
+      </tr>
+      <tr>
+        <td>POC identifier</td>
+        <td><%= POCidentifier %></td>
       </tr>
       <tr>
         <td>NHS Number</td>

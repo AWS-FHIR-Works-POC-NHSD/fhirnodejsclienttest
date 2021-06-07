@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const axios = require('axios');
 
+const methodOverride = require('method-override')
+
 // Load environment variables from .env
 var dotenv = require('dotenv');
 dotenv.config();
@@ -12,12 +14,17 @@ axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-/* GET VACC (retrieve) page. */
+/* UPDATE vacc page. */
 router.get('/', function(req, res, next) {
 
-console.log("Inside /getvacc!");
+console.log("Inside Running update.js");
+console.log("REQ body:" + req.body)
 
-console.log("req.query :" + req.body)
+/*
+var POCidentifier = req.query.POCidentifier;
+console.log("The Immunization_Id is " + POCidentifier );
+*/
+
 var id = req.query.id;
 console.log("The FHIR resource id " + id );
 
@@ -27,8 +34,8 @@ axios.get('/Immunization/' + id )
     //console.log(response);
 
     var id                          = response.data.id;
-    var POCidentifier               = response.data.identifier[0].value;
     var nhsNumber                   = response.data.patient.identifier.value;
+    var POCidentifier               = response.data.identifier[0].value;
     var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
     var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
     var vaccineProductCode          = response.data.vaccineCode.coding[0].code;
@@ -36,7 +43,11 @@ axios.get('/Immunization/' + id )
     var batchNumber                 = response.data.lotNumber;
     var expirationDate              = response.data.expirationDate;
     
-    res.render("get", { 
+    console.log("Update.js values before render");
+    console.log("id: " + id );
+    console.log("POCidentifier: " + POCidentifier );
+
+    res.render("update", { 
       id : id,
       POCidentifier : POCidentifier,
       nhsNumber : nhsNumber,
@@ -50,7 +61,7 @@ axios.get('/Immunization/' + id )
   })
   .catch(function (error) {
     // handle error
-    console.log(error);
+    //console.log(error);
   })
   .then(function () {
     // always executed

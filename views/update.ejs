@@ -1,6 +1,6 @@
 <%- include('partials/header'); -%>
 
-<H2>POST (Create) a new vaccination record</H2>
+<H2>UPDATE an existing vaccination record</H2>
 <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
 
@@ -10,13 +10,28 @@
 <!-- Inline CSS based on choices in "Settings" tab -->
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 
+
 <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
 <div class="bootstrap-iso">
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
-    <form action="/postvacc" method="post">
-     <div class="form-group ">
+    <form action="/updatevacc" method="post">
+
+    <div class="form-group ">
+      <label class="control-label requiredField" for="id">
+       FHIR Resource id
+      </label>
+      <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-user-md">
+        </i>
+       </div>
+       <input class="form-control" id="id" name="id" value="<%= id %>" readonly type="text"/>
+      </div>
+
+
+    <div class="form-group ">
       <label class="control-label requiredField" for="pocidentifier">
        POC identifier
        <span class="asteriskField">
@@ -28,9 +43,8 @@
         <i class="fa fa-user-md">
         </i>
        </div>
-       <input class="form-control" id="pocidentifier" name="pocidentifier" placeholder="12341234" type="text"/>
+       <input class="form-control" id="pocidentifier" name="pocidentifier" value="<%= POCidentifier %>" type="text"/>
       </div>
-     </div>
      <div class="form-group ">
       <label class="control-label requiredField" for="nhsnumber">
        NHS Number
@@ -43,7 +57,7 @@
         <i class="fa fa-user-md">
         </i>
        </div>
-       <input class="form-control" id="nhsnumber" name="nhsnumber" placeholder="9297864864" type="text"/>
+       <input class="form-control" id="nhsnumber" name="nhsnumber" value="<%= nhsNumber %>" type="text"/>
       </div>
      </div>
      <div class="form-group ">
@@ -108,10 +122,11 @@
        <input class="form-control" id="expirydate" name="expirydate" placeholder="MM/DD/YYYY" type="text"/>
       </div>
      </div>
+
      <div class="form-group">
       <div>
        <button class="btn btn-info" name="submit" type="submit">
-        Create vaccination record
+        Update vaccination record
        </button>
       </div>
      </div>

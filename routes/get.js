@@ -5,7 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   console.log("Running get.js");
 
-    var FHIRId = "";
+    var id = "";
+    var POCidentifier = "";
     var nhsNumber = "";
     var vaccineProcedureCode = "";
     var vaccineProcedureDescription = "";
@@ -15,7 +16,8 @@ router.get('/', function(req, res, next) {
     var expirationDate              = "";
 
   res.render("get",{ 
-      FHIRId : FHIRId,
+      id : id,
+      POCidentifier : POCidentifier,
       nhsNumber : nhsNumber,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,

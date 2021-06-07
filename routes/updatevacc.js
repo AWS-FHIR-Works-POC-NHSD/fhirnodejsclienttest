@@ -1,7 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
-const {v4 : uuidv4} = require('uuid')
+//const {v4 : uuidv4} = require('uuid')
+
+/*
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+*/
 
 require('dotenv').config()
 
@@ -15,18 +20,20 @@ axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-/* POST CREATE vacc page. */
+/* UPDATE (put) vacc page. */
 router.post('/', function(req, res, next) {
 
-  console.log("Running postvacc.js")
+  console.log("Inside updatevacc.js")
   console.log(req.body);
 
- var POCidentifier    = req.body.pocidentifier
+ var id               = req.body.id;
+ var POCidentifier    = req.body.pocidentifier;
  var nhsNumber        = req.body.nhsnumber;
  var vaccineProcedure = req.body.vaccprocedure;
  var date             = req.body.date + "T00:00:00.000+00:00";
  var expirationDate   = req.body.expirydate;
  var lotNumber        = req.body.batchnumber;
+
 
 if (vaccineProcedure == "dose1")
  { 
@@ -57,17 +64,20 @@ if (vaccineProcedure == "dose2")
   vaccineProductDescription = "COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for injection multidose vials (Moderna, Inc)";
 }
 
-//var POCidentifier = uuidv4();
+//var uuid = uuidv4();
 
-//console.log("THE VACCINE CHOSEN IN UI IS " + vaccineProduct);
+ console.log("id " + id);
  console.log("vaccineProductCode " + vaccineProductCode);
  console.log("vaccineProductDescription " + vaccineProductDescription);
  console.log("POCidentifier " + POCidentifier);
+ //console.log("identifier UUID " + uuid);
 
 
-axios.post('/Immunization', 
+
+axios.put('/Immunization/' + id, 
 {
   "resourceType": "Immunization",
+  "id": id,
   "meta": {
        "profile":  [
           "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Immunization"
@@ -192,12 +202,12 @@ axios.post('/Immunization',
   )
   .then(function (response) {
     //console.log(response);
-    var newVaccId = response.data.id;
-    console.log("newVaccId = " + newVaccId);
-    res.render("postcreated", { newVaccId : newVaccId } );
+    //var newVaccId = response.data.id;
+    //console.log("newVaccId = " + newVaccId);
+    res.render("updatedvacc", { id : id } );
   })
   .catch(function (error) {
-    console.log(error);
+    //console.log(error);
   });
  
 });
