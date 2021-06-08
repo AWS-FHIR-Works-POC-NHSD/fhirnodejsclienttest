@@ -10,7 +10,6 @@
 <!-- Inline CSS based on choices in "Settings" tab -->
 <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
 
-
 <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
 <div class="bootstrap-iso">
  <div class="container-fluid">
@@ -29,7 +28,6 @@
        </div>
        <input class="form-control" id="id" name="id" value="<%= id %>" readonly type="text"/>
       </div>
-
 
     <div class="form-group ">
       <label class="control-label requiredField" for="pocidentifier">
@@ -60,11 +58,12 @@
        <input class="form-control" id="nhsnumber" name="nhsnumber" value="<%= nhsNumber %>" type="text"/>
       </div>
      </div>
+
      <div class="form-group ">
       <label class="control-label " for="vaccprocedure">
        Vaccination Procedure
       </label>
-      <select class="select form-control" id="vaccprocedure" name="vaccprocedure">
+      <select class="select form-control" id="vaccprocedure" name="vaccprocedure" value="<%= vaccineProcedure %>"/>
        <option value="dose1">
         Dose 1
        </option>
@@ -77,7 +76,7 @@
       <label class="control-label " for="vaccine">
        Vaccine Product
       </label>
-      <select class="select form-control" id="vaccine" name="vaccine">
+      <select class="select form-control" id="vaccine" name="vaccine" />
        <option value="pfizer">
         Pfizer
        </option>
@@ -98,7 +97,7 @@
         <i class="fa fa-calendar-check-o">
         </i>
        </div>
-       <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
+       <input class="form-control" id="date" name="date" value="<%= date %>" type="text"/>
       </div>
      </div>
      <div class="form-group ">
@@ -108,7 +107,7 @@
         *
        </span>
       </label>
-      <input class="form-control" id="batchnumber" name="batchnumber" type="text"/>
+      <input class="form-control" id="batchnumber" name="batchnumber" type="text" value="<%= batchNumber %>"/>
      </div>
      <div class="form-group ">
       <label class="control-label " for="expirydate">
@@ -119,7 +118,7 @@
         <i class="fa fa-calendar-check-o">
         </i>
        </div>
-       <input class="form-control" id="expirydate" name="expirydate" placeholder="MM/DD/YYYY" type="text"/>
+       <input class="form-control" id="expirydate" name="expirydate" value="<%= expirationDate %>" type="text"/>
       </div>
      </div>
 
@@ -135,7 +134,6 @@
   </div>
  </div>
 </div>
-
 
 <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
 <!-- Include jQuery -->
@@ -170,5 +168,7 @@
         })
     })
 </script>
+
+
 
 <%- include('partials/footer'); -%>

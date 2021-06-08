@@ -28,6 +28,10 @@ axios.get('/Immunization/' + id )
 
     var id                          = response.data.id;
     var POCidentifier               = response.data.identifier[0].value;
+
+    var fulldate                    = response.data.occurrenceDateTime;
+    var date                        = fulldate.substring(0, 10);
+
     var nhsNumber                   = response.data.patient.identifier.value;
     var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
     var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
@@ -40,6 +44,7 @@ axios.get('/Immunization/' + id )
       id : id,
       POCidentifier : POCidentifier,
       nhsNumber : nhsNumber,
+      date : date,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,

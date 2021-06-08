@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     var vaccineProcedureDescription = "";
     var vaccineProductCode          = "";
     var vaccineProductDescription   = "";
+    var date                        = "";
     var batchNumber                 = "";
     var expirationDate              = "";
 
@@ -19,6 +20,7 @@ router.get('/', function(req, res, next) {
       id : id,
       POCidentifier : POCidentifier,
       nhsNumber : nhsNumber,
+      date : date,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,
