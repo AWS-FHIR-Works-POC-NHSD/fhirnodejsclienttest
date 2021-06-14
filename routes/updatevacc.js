@@ -35,15 +35,20 @@ router.post('/', function(req, res, next) {
  var lotNumber        = req.body.batchnumber;
 
 
-if (vaccineProcedure == "dose1")
+if (vaccineProcedure == "covdose1")
  { 
   vaccineProcedureCode = "1324681000000101";
   vaccineProcedureDescription = "Administration of first dose of SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) vaccine";
 }
-if (vaccineProcedure == "dose2")
+if (vaccineProcedure == "covdose2")
  { 
   vaccineProcedureCode = "1324691000000104";
   vaccineProcedureDescription = "Administration of second dose of SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) vaccine";
+}
+if (vaccineProcedure == "hpvdose")
+ { 
+  vaccineProcedureCode = "734152003";
+  vaccineProcedureDescription = "Administration of vaccine product containing only Human papillomavirus 6, 11, 16 and 18 antigens";
 }
 
  var vaccineProduct = req.body.vaccine;
@@ -62,6 +67,11 @@ if (vaccineProcedure == "dose2")
  { 
   vaccineProductCode = "39326911000001101";
   vaccineProductDescription = "COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for injection multidose vials (Moderna, Inc)";
+}
+ if (vaccineProduct == "gardasil")
+ { 
+  vaccineProductCode = "10880211000001104";
+  vaccineProductDescription = "Gardasil vaccine suspension for injection 0.5ml pre-filled syringes (Merck Sharp & Dohme (UK) Ltd)";
 }
 
 //var uuid = uuidv4();
