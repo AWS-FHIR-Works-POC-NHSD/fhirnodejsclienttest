@@ -80,7 +80,7 @@ axios.post('/Immunization',
   "resourceType": "Immunization",
   "meta": {
        "profile":  [
-          "https://fhir.nhs.uk/StructureDefinition/NHSDigital-Immunization"
+          "https://fhir.hl7.org.uk/StructureDefinition/UKCore-Immunization"
         ]
    },
   "extension": [ {
