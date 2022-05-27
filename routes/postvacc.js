@@ -46,20 +46,25 @@ if (vaccineProcedure == "hpvdose")
 
  var vaccineProduct = req.body.vaccine;
 
- if (vaccineProduct == "astrazeneca")
+ if (vaccineProduct == "vaxzevria")
  { 
   vaccineProductCode = "39114911000001105";
-  vaccineProductDescription = "COVID-19 Vaccine AstraZeneca (ChAdOx1 S [recombinant]) 5x10,000,000,000 viral particles/0.5ml dose solution for injection multidose vials (AstraZeneca)";
+  vaccineProductDescription = "COVID-19 Vaccine Vaxzevria (ChAdOx1 S [recombinant]) not less than 2.5x100,000,000 infectious units/0.5ml dose suspension for injection multidose vials (AstraZeneca UK Ltd)";
 }
- if (vaccineProduct == "pfizer")
+ if (vaccineProduct == "comirnaty30")
  { 
   vaccineProductCode = "39115611000001103";
   vaccineProductDescription = "COVID-19 mRNA Vaccine Pfizer-BioNTech BNT162b2 30micrograms/0.3ml dose concentrate for suspension for injection multidose vials (Pfizer Ltd)";
 }
- if (vaccineProduct == "moderna")
+ if (vaccineProduct == "comirnaty10")
+ { 
+  vaccineProductCode = "40384611000001108";
+  vaccineProductDescription = "Comirnaty Children 5-11 years COVID-19 mRNA Vaccine 10micrograms/0.2ml dose concentrate for dispersion for injection multidose vials (Pfizer Ltd)";
+}
+ if (vaccineProduct == "spikevax")
  { 
   vaccineProductCode = "39326911000001101";
-  vaccineProductDescription = "COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for injection multidose vials (Moderna, Inc)";
+  vaccineProductDescription = "Spikevax COVID-19 mRNA (nucleoside modified) Vaccine 0.1mg/0.5ml dose dispersion for injection multidose vials (Moderna, Inc)";
 }
  if (vaccineProduct == "gardasil")
  { 
