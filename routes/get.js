@@ -15,6 +15,8 @@ router.get('/', function(req, res, next) {
     var date                        = "";
     var batchNumber                 = "";
     var expirationDate              = "";
+    var reasonCode                  = "";
+    var reasonDescription           = "";
 
   res.render("get",{ 
       id : id,
@@ -26,7 +28,9 @@ router.get('/', function(req, res, next) {
       vaccineProductCode : vaccineProductCode,
       vaccineProductDescription : vaccineProductDescription,
       batchNumber : batchNumber,
-      expirationDate : expirationDate
+      expirationDate : expirationDate,
+      reasonCode : reasonCode,
+      reasonDescription : reasonDescription
   });
   
 });

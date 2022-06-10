@@ -24,9 +24,11 @@ router.post('/', function(req, res, next) {
  var POCidentifier    = req.body.pocidentifier
  var nhsNumber        = req.body.nhsnumber;
  var vaccineProcedure = req.body.vaccprocedure;
+ var vaccineProduct   = req.body.vaccine;
  var date             = req.body.date + "T00:00:00.000+00:00";
  var expirationDate   = req.body.expirydate;
  var lotNumber        = req.body.batchnumber;
+ var reason           = req.body.reason;
 
 if (vaccineProcedure == "covdose1")
  { 
@@ -44,7 +46,7 @@ if (vaccineProcedure == "hpvdose")
   vaccineProcedureDescription = "Administration of vaccine product containing only Human papillomavirus 6, 11, 16 and 18 antigens";
 }
 
- var vaccineProduct = req.body.vaccine;
+
 
  if (vaccineProduct == "vaxzevria")
  { 
@@ -71,6 +73,19 @@ if (vaccineProcedure == "hpvdose")
   vaccineProductCode = "10880211000001104";
   vaccineProductDescription = "Gardasil vaccine suspension for injection 0.5ml pre-filled syringes (Merck Sharp & Dohme (UK) Ltd)";
 }
+
+
+
+ if (reason == "diseaseoutbreak")
+ { 
+  reasonCode = "443684005";
+  reasonDescription = "Disease outbreak";
+ }
+  if (reason == "pregnant")
+ { 
+  reasonCode = "77386006";
+  reasonDescription = "Pregnant";
+ }
 
 //var POCidentifier = uuidv4();
 
@@ -197,8 +212,8 @@ axios.post('/Immunization',
       "coding": [
         {
           "system": "http://snomed.info/sct",
-          "code": "443684005",
-          "display": "Disease outbreak (event)"
+          "code": reasonCode,
+          "display": reasonDescription
         }
       ]
     }
