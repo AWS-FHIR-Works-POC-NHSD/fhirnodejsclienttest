@@ -27,9 +27,11 @@ axios.get('/Immunization/' + id )
     //console.log(response);
 
     var id                          = "";
-    var POCidentifier               = "";
+    var identifier               = "";
+    var identifierSystem         = "";
     var fulldate                    = "";
     var date                        = "";
+    var recorded                    = "";
     var nhsNumber                   = "";
     var vaccineProcedureCode        = "";
     var vaccineProcedureDescription = "";
@@ -41,9 +43,11 @@ axios.get('/Immunization/' + id )
     var reasonDescription           = "";
 
     id                          = response.data.id;
-    POCidentifier               = response.data.identifier[0].value;
+    identifier               = response.data.identifier[0].value;
+    identifierSystem         = response.data.identifier[0].system;
     fulldate                    = response.data.occurrenceDateTime;
     date                        = fulldate.substring(0, 10);
+    recorded                    = response.data.recorded;
     nhsNumber                   = response.data.patient.identifier.value;
     vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
     vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
@@ -56,9 +60,11 @@ axios.get('/Immunization/' + id )
 
     res.render("get", { 
       id : id,
-      POCidentifier : POCidentifier,
+      identifier : identifier,
+      identifierSystem : identifierSystem,
       nhsNumber : nhsNumber,
       date : date,
+      recorded : recorded,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,

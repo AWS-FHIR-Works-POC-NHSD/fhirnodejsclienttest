@@ -6,7 +6,8 @@ router.get('/', function(req, res, next) {
   console.log("Running get.js");
 
     var id = "";
-    var POCidentifier = "";
+    var identifier = "";
+    var identifierSystem = "";
     var nhsNumber = "";
     var vaccineProcedureCode = "";
     var vaccineProcedureDescription = "";
@@ -20,7 +21,8 @@ router.get('/', function(req, res, next) {
 
   res.render("get",{ 
       id : id,
-      POCidentifier : POCidentifier,
+      identifier : identifier,
+      identifierSystem : identifierSystem,
       nhsNumber : nhsNumber,
       date : date,
       vaccineProcedureCode : vaccineProcedureCode,

@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
   console.log("Running postvacc.js")
   console.log(req.body);
 
- var POCidentifier    = req.body.pocidentifier
+ //var POCidentifier    = req.body.pocidentifier
  var nhsNumber        = req.body.nhsnumber;
  var vaccineProcedure = req.body.vaccprocedure;
  var vaccineProduct   = req.body.vaccine;
@@ -29,6 +29,17 @@ router.post('/', function(req, res, next) {
  var expirationDate   = req.body.expirydate;
  var lotNumber        = req.body.batchnumber;
  var reason           = req.body.reason;
+
+const rdate = require('date-and-time')
+// Creating object of current date and time by using Date()
+const now = new Date();
+
+// Formatting the date and time
+// by using date.format() method
+//const value = date.format(now,'YYYY/MM/DD HH:mm:ss');
+const recordedDate = rdate.format(now,'YYYY-MM-DD');
+
+/* vaccination procedures */
 
 if (vaccineProcedure == "polioboostercampaign")
  { 
@@ -56,6 +67,7 @@ if (vaccineProcedure == "hpvdose")
   vaccineProcedureDescription = "Administration of vaccine product containing only Human papillomavirus 6, 11, 16 and 18 antigens";
 }
 
+/* vaccine types (products) */
 
  if (vaccineProduct == "infanrixhexa")
  { 
@@ -114,7 +126,6 @@ if (vaccineProcedure == "hpvdose")
 }
 
 
-
  if (reason == "diseaseoutbreak")
  { 
   reasonCode = "443684005";
@@ -126,7 +137,7 @@ if (vaccineProcedure == "hpvdose")
   reasonDescription = "Pregnant";
  }
 
-//var POCidentifier = uuidv4();
+var POCidentifier = uuidv4();
 
 //console.log("THE VACCINE CHOSEN IN UI IS " + vaccineProduct);
  console.log("vaccineProductCode " + vaccineProductCode);
@@ -177,6 +188,7 @@ axios.post('/Immunization',
       }
   },
   "occurrenceDateTime": date,
+  "recorded": recordedDate,
   "primarySource": true,
   "lotNumber": lotNumber,
   "expirationDate": expirationDate,

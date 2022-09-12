@@ -34,6 +34,8 @@ router.post('/', function(req, res, next) {
  var expirationDate   = req.body.expirydate;
  var lotNumber        = req.body.batchnumber;
 
+/* vaccination procedures */
+
 if (vaccineProcedure == "polioboostercampaign")
  { 
   vaccineProcedureCode = "170356000";
@@ -59,6 +61,8 @@ if (vaccineProcedure == "hpvdose")
   vaccineProcedureCode = "734152003";
   vaccineProcedureDescription = "Administration of vaccine product containing only Human papillomavirus 6, 11, 16 and 18 antigens";
 }
+
+/* vaccine types (products) */
 
  var vaccineProduct = req.body.vaccine;
 

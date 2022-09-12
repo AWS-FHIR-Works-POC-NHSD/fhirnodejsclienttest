@@ -33,9 +33,8 @@ router.get('/', function(req, res, next) {
         var numberOfResources = response.data.total;
         console.log("numberOfResources : " + numberOfResources);
 
-
-
 global.immCounter = 0;
+global.id = [];
 global.identifierSystem = [];
 global.identifierValue = [];
 global.status = [];
@@ -60,6 +59,8 @@ for (i = 0; i < numberOfResources; i++) {
 
       console.log("i is " + i );
 
+      global.id[i]                      = response.data.entry[i].resource.id;
+      //global.id[i]                      = 1;
       global.identifierSystem[i]        = response.data.entry[i].resource.identifier[0].system;
       global.identifierValue[i]         = response.data.entry[i].resource.identifier[0].value;
       global.status[i]                  = response.data.entry[i].resource.status;
