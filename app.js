@@ -21,6 +21,7 @@ var updatevaccRouter  = require('./routes/updatevacc');
 var deleteRouter      = require('./routes/delete');
 var deletevaccRouter  = require('./routes/deletevacc');
 var historyRouter     = require('./routes/history');
+var historyretrievedRouter     = require('./routes/historyget');
 
 require('dotenv').config()
 
@@ -52,6 +53,7 @@ app.use('/updatevacc', updatevaccRouter);
 app.use('/delete', deleteRouter);
 app.use('/deletevacc', deletevaccRouter);
 app.use('/history', historyRouter);
+app.use('/historyget', historyretrievedRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

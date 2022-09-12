@@ -164,24 +164,15 @@ axios.post('/Immunization',
    ]
   },
   "patient": {
-    "reference": "Patient/1953684",
+    "reference": "Patient/6998939",
     "type": "Patient",
     "identifier": {
       "system": "https://fhir.nhs.uk/Id/nhs-number",
       "value": nhsNumber
       }
   },
-  "encounter": {
-    "reference": "Encounter/example"
-  },
   "occurrenceDateTime": date,
   "primarySource": true,
-  "location": {
-    "reference": "Location/1"
-  },
-  "manufacturer": {
-    "reference": "Organization/hl7"
-  },
   "lotNumber": lotNumber,
   "expirationDate": expirationDate,
   "site": {
@@ -208,39 +199,6 @@ axios.post('/Immunization',
     "system": "http://snomed.info/sct",
     "code": "258773002"
   },
-  "performer": [
-    {
-      "function": {
-        "coding": [
-          {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0443",
-            "code": "OP"
-          }
-        ]
-      },
-      "actor": {
-        "reference": "Practitioner/example"
-      }
-    },
-    {
-      "function": {
-        "coding": [
-          {
-            "system": "http://terminology.hl7.org/CodeSystem/v2-0443",
-            "code": "AP"
-          }
-        ]
-      },
-      "actor": {
-        "reference": "Practitioner/example"
-      }
-    }
-  ],
-  "note": [
-    {
-      "text": "Notes on adminstration of vaccine"
-    }
-  ],
   "reasonCode": [
     {
       "coding": [

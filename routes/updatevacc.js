@@ -159,24 +159,15 @@ axios.put('/Immunization/' + id,
    ]
   },
   "patient": {
-    "reference": "Patient/1953684",
+    "reference": "Patient/6998939",
     "type": "Patient",
     "identifier": {
       "system": "https://fhir.nhs.uk/Id/nhs-number",
       "value": nhsNumber
       }
   },
-  "encounter": {
-    "reference": "Encounter/example"
-  },
   "occurrenceDateTime": date,
   "primarySource": true,
-  "location": {
-    "reference": "Location/1"
-  },
-  "manufacturer": {
-    "reference": "Organization/hl7"
-  },
   "lotNumber": lotNumber,
   "expirationDate": expirationDate,
   "site": {

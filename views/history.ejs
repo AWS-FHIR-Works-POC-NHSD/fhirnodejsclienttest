@@ -1,7 +1,16 @@
 <%- include('partials/header'); -%>
 
-<H2>Vaccination History</H2>
+<H2>GET Vaccination History</H2>
 
-<P>Click on the links above to manage vaccination data
+<form class="form-horizontal" action="/historyget" method="GET">
+  <div class="form-group">
+    <div class="col-sm-5">
+      <label class="control-label col-sm-9" for="id">FHIR resource ID (/patient/XXX)</label>
+      <input type="text" class="form-control" name="id">
+   </div>   
+  </div>
+  <br>
+  <button class="btn btn-info">Get vaccination history</button>
+</form>
 
 <%- include('partials/footer'); -%>
