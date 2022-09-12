@@ -30,6 +30,11 @@ router.post('/', function(req, res, next) {
  var lotNumber        = req.body.batchnumber;
  var reason           = req.body.reason;
 
+if (vaccineProcedure == "polioboostercampaign")
+ { 
+  vaccineProcedureCode = "170356000";
+  vaccineProcedureDescription = "Administration of booster dose of vaccine product containing only Human poliovirus antigen";
+}
 if (vaccineProcedure == "covdose1")
  { 
   vaccineProcedureCode = "1324681000000101";
@@ -47,11 +52,25 @@ if (vaccineProcedure == "hpvdose")
 }
 
 
-
- if (vaccineProduct == "vaxzevria")
+ if (vaccineProduct == "infanrixhexa")
  { 
-  vaccineProductCode = "39114911000001105";
-  vaccineProductDescription = "COVID-19 Vaccine Vaxzevria (ChAdOx1 S [recombinant]) not less than 2.5x100,000,000 infectious units/0.5ml dose suspension for injection multidose vials (AstraZeneca UK Ltd)";
+  vaccineProductCode = "34765811000001105";
+  vaccineProductDescription = "Infanrix Hexa vaccine powder and suspension for suspension for injection 0.5ml pre-filled syringes (GlaxoSmithKline UK Ltd)";
+}
+ if (vaccineProduct == "vaxelis")
+ { 
+  vaccineProductCode = "39367111000001105";
+  vaccineProductDescription = "Vaxelis vaccine suspension for injection 0.5ml pre-filled syringes (Sanofi)";
+}
+ if (vaccineProduct == "boostrixipv")
+ { 
+  vaccineProductCode = "26267211000001100";
+  vaccineProductDescription = "Boostrix-IPV suspension for injection 0.5ml pre-filled syringes (GlaxoSmithKline UK Ltd)";
+}
+ if (vaccineProduct == "revaxis")
+ { 
+  vaccineProductCode = "7374311000001101";
+  vaccineProductDescription = "Revaxis vaccine suspension for injection 0.5ml pre-filled syringes (Sanofi Pasteur)";
 }
  if (vaccineProduct == "comirnaty30")
  { 
@@ -63,10 +82,25 @@ if (vaccineProcedure == "hpvdose")
   vaccineProductCode = "40384611000001108";
   vaccineProductDescription = "Comirnaty Children 5-11 years COVID-19 mRNA Vaccine 10micrograms/0.2ml dose concentrate for dispersion for injection multidose vials (Pfizer Ltd)";
 }
+ if (vaccineProduct == "comirnaty0O")
+ { 
+  vaccineProductCode = "40851611000001102";
+  vaccineProductDescription = "Comirnaty Original/Omicron BA.1 COVID-19 mRNA Vaccine 15micrograms/15micrograms/0.3ml dose dispersion for injection multidose vials (Pfizer Ltd)";
+}
  if (vaccineProduct == "spikevax")
  { 
   vaccineProductCode = "39326911000001101";
   vaccineProductDescription = "Spikevax COVID-19 mRNA (nucleoside modified) Vaccine 0.1mg/0.5ml dose dispersion for injection multidose vials (Moderna, Inc)";
+}
+ if (vaccineProduct == "modernabspikevax0O")
+ { 
+  vaccineProductCode = "40801911000001102";
+  vaccineProductDescription = "COVID-19 Vaccine Spikevax 0 (Zero)/O (Omicron) 0.1mg/ml dispersion for injection multidose vials (Moderna, Inc)";
+}
+ if (vaccineProduct == "vaxzevria")
+ { 
+  vaccineProductCode = "39114911000001105";
+  vaccineProductDescription = "COVID-19 Vaccine Vaxzevria (ChAdOx1 S [recombinant]) not less than 2.5x100,000,000 infectious units/0.5ml dose suspension for injection multidose vials (AstraZeneca UK Ltd)";
 }
  if (vaccineProduct == "gardasil")
  { 

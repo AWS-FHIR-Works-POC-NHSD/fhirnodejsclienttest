@@ -26,6 +26,37 @@ axios.get('/Immunization/' + id )
     // handle success
     //console.log(response);
 
+
+    var id                          = "";
+    var POCidentifier               = "";
+    var fulldate                    = "";
+    var date                        = "";
+    var nhsNumber                   = "";
+    var vaccineProcedureCode        = "";
+    var vaccineProcedureDescription = "";
+    var vaccineProductCode          = "";
+    var vaccineProductDescription   = "";
+    var batchNumber                 = "";
+    var expirationDate              = "";
+    var reasonCode                  = "";
+    var reasonDescription           = "";
+
+    id                          = response.data.id;
+    POCidentifier               = response.data.identifier[0].value;
+    fulldate                    = response.data.occurrenceDateTime;
+    date                        = fulldate.substring(0, 10);
+    nhsNumber                   = response.data.patient.identifier.value;
+    vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
+    vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
+    vaccineProductCode          = response.data.vaccineCode.coding[0].code;
+    vaccineProductDescription   = response.data.vaccineCode.coding[0].display;
+    batchNumber                 = response.data.lotNumber;
+    expirationDate              = response.data.expirationDate;
+    reasonCode                  = response.data.reasonCode[0].coding[0].code;
+    reasonDescription           = response.data.reasonCode[0].coding[0].display;
+
+
+/*
     var id                          = response.data.id;
     var POCidentifier               = response.data.identifier[0].value;
     var fulldate                    = response.data.occurrenceDateTime;
@@ -39,6 +70,7 @@ axios.get('/Immunization/' + id )
     var expirationDate              = response.data.expirationDate;
     var reasonCode                  = response.data.reasonCode[0].coding[0].code;
     var reasonDescription           = response.data.reasonCode[0].coding[0].display;
+*/
 
 /*
     console.log(id);
