@@ -26,7 +26,6 @@ axios.get('/Immunization/' + id )
     // handle success
     //console.log(response);
 
-
     var id                          = "";
     var POCidentifier               = "";
     var fulldate                    = "";
@@ -54,37 +53,6 @@ axios.get('/Immunization/' + id )
     expirationDate              = response.data.expirationDate;
     reasonCode                  = response.data.reasonCode[0].coding[0].code;
     reasonDescription           = response.data.reasonCode[0].coding[0].display;
-
-
-/*
-    var id                          = response.data.id;
-    var POCidentifier               = response.data.identifier[0].value;
-    var fulldate                    = response.data.occurrenceDateTime;
-    var date                        = fulldate.substring(0, 10);
-    var nhsNumber                   = response.data.patient.identifier.value;
-    var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
-    var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
-    var vaccineProductCode          = response.data.vaccineCode.coding[0].code;
-    var vaccineProductDescription   = response.data.vaccineCode.coding[0].display;
-    var batchNumber                 = response.data.lotNumber;
-    var expirationDate              = response.data.expirationDate;
-    var reasonCode                  = response.data.reasonCode[0].coding[0].code;
-    var reasonDescription           = response.data.reasonCode[0].coding[0].display;
-*/
-
-/*
-    console.log(id);
-    console.log(POCidentifier);
-    console.log(fulldate);
-    console.log(date);
-    console.log(nhsNumber);
-    console.log(vaccineProcedureCode);
-    console.log(vaccineProcedureDescription);
-    console.log(vaccineProductCode);
-    console.log(vaccineProductDescription);
-    console.log(batchNumber);
-    console.log(expirationDate);
-*/
 
     res.render("get", { 
       id : id,

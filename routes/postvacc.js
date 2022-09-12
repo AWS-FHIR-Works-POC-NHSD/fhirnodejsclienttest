@@ -45,6 +45,11 @@ if (vaccineProcedure == "covdose2")
   vaccineProcedureCode = "1324691000000104";
   vaccineProcedureDescription = "Administration of second dose of SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2) vaccine";
 }
+if (vaccineProcedure == "covbooster")
+ { 
+  vaccineProcedureCode = "1362591000000103";
+  vaccineProcedureDescription = "Immunisation course to maintain protection against SARS-CoV-2 (severe acute respiratory syndrome coronavirus 2)";
+}
 if (vaccineProcedure == "hpvdose")
  { 
   vaccineProcedureCode = "734152003";
@@ -164,7 +169,7 @@ axios.post('/Immunization',
    ]
   },
   "patient": {
-    "reference": "Patient/6998939",
+    "reference": "Patient/" + process.env.PATIENT,
     "type": "Patient",
     "identifier": {
       "system": "https://fhir.nhs.uk/Id/nhs-number",
