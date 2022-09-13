@@ -45,6 +45,8 @@ global.vaccineCodeDisplay = [];
 global.occurrenceDateTime = [];
 global.recorded = [];
 global.primarySource = [];
+global.reasonCode = [];
+global.reasonDescription = [];
 
 for (i = 0; i < numberOfResources; i++) {
 
@@ -71,6 +73,9 @@ for (i = 0; i < numberOfResources; i++) {
       global.occurrenceDateTime[i]      = response.data.entry[i].resource.occurrenceDateTime;
       global.recorded[i]                = response.data.entry[i].resource.recorded;
       global.primarySource[i]           = response.data.entry[i].resource.primarySource;
+      global.reasonCode                 = response.data.entry[i].resource.reasonCode[0].coding[0].code;
+      global.reasonDescription          = response.data.entry[i].resource.reasonCode[0].coding[0].display;
+
 
       console.log("Immcounter " + immCounter);
 

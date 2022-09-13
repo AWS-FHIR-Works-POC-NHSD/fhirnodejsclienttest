@@ -48,7 +48,10 @@ axios.get('/Immunization/' + id )
     var expirationDate              = response.data.expirationDate;
     var vaccineProcedure            = "";
     var vaccineProduct              = "";
-    
+    /*
+    var reason                      = response.data.reasonCode.coding[0].display;
+    */
+
     if (vaccineProcedureCode == "1324681000000101") {
      vaccineProcedure = "dose1"
     }
@@ -67,13 +70,14 @@ axios.get('/Immunization/' + id )
     }
 
 
-
+/*
     console.log("Update.js values before render");
     console.log("id: " + id );
     console.log("POCidentifier: " + POCidentifier );
     console.log("vaccineProcedure: " + vaccineProcedure );
     console.log("fulldate: " + fulldate );
     console.log("date: " + date );
+    */
 
 
     res.render("update", { 
@@ -85,6 +89,9 @@ axios.get('/Immunization/' + id )
       vaccineProduct : vaccineProduct,
       batchNumber : batchNumber,
       expirationDate : expirationDate
+      /* ,
+      reason : reason
+      */
     })
   })
   .catch(function (error) {

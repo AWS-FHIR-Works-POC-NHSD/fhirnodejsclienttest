@@ -136,6 +136,11 @@ if (vaccineProcedure == "hpvdose")
   reasonCode = "77386006";
   reasonDescription = "Pregnant";
  }
+   if (reason == "chocolate")
+ { 
+  reasonCode = "227610000";
+  reasonDescription = "Milk chocolate";
+ }
 
 var POCidentifier = uuidv4();
 

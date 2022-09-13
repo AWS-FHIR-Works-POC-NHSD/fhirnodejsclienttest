@@ -1,6 +1,6 @@
 <%- include('partials/header'); -%>
 
-<H2>RETRIEVED Vaccination History</H2>
+<H2>View Vaccination History</H2>
 
 <P>Some retrieved vacc history
 
@@ -62,6 +62,14 @@
   <tr>
     <td>primarySource</td>
     <td><%= primarySource[i] %></td>
+  </tr>
+  <tr>
+    <td>Reason Code (SNOMED)</td>
+    <td><%= reasonCode %></td>
+  </tr>
+  <tr>
+    <td>Reason Description</td>
+    <td><%= reasonDescription %></td>
   </tr>
     </tbody>
 <table>
