@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
     var vaccineProductCode          = "";
     var vaccineProductDescription   = "";
     var date                        = "";
+    var recorded                    = "";
     var batchNumber                 = "";
     var expirationDate              = "";
     var reasonCode                  = "";
@@ -25,6 +26,7 @@ router.get('/', function(req, res, next) {
       identifierSystem : identifierSystem,
       nhsNumber : nhsNumber,
       date : date,
+      recorded : recorded,
       vaccineProcedureCode : vaccineProcedureCode,
       vaccineProcedureDescription : vaccineProcedureDescription,
       vaccineProductCode : vaccineProductCode,

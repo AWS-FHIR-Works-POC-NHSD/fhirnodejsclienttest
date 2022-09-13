@@ -12,20 +12,20 @@ axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-/* GET VACC (retrieve) page. */
+/* DELETE vacc page. */
 router.get('/', function(req, res, next) {
 
 console.log("Inside /deletevacc!");
 
 //var immunization_id = "";
-var immunization_id = req.query.immunizationid;
-console.log("The Immunization_Id is " + immunization_id );
+var id = req.query.id;
+console.log("The Immunization_Id is " + id );
 
-axios.delete('Immunization/' + immunization_id )
+axios.delete('Immunization/' + id )
   .then(function (response) {
     // handle success
     //console.log(response);
-    res.render("deletevacc", { newVaccId : immunization_id });
+    res.render("deletevacc", { id : id });
   })
   .catch(function (error) {
     // handle error

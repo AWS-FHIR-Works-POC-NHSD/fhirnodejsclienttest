@@ -1,6 +1,6 @@
 <%- include('partials/header'); -%>
 
-<H2>POST (Create) a new vaccination record</H2>
+<H2>Create (POST) a new vaccination record</H2>
 <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
 
@@ -18,7 +18,7 @@
     <form action="/postvacc" method="post">
      <div class="form-group ">
       <label class="control-label requiredField" for="pocidentifier">
-       POC identifier
+       POC identifier (e.g. ODS code)
        <span class="asteriskField">
         *
        </span>
