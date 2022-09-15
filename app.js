@@ -13,6 +13,7 @@ const methodOverride = require('method-override')
 
 var homeRouter        = require('./routes/home');
 var getPatientRouter  = require('./routes/getpatient');
+var getPatientRetrieveRouter  = require('./routes/patientretrieve');
 var getRouter         = require('./routes/get');
 var getvaccRouter     = require('./routes/getvacc');
 var postRouter        = require('./routes/post');
@@ -46,6 +47,7 @@ app.use(methodOverride('_method'))
 
 app.use('/', homeRouter);
 app.use('/patient', getPatientRouter);
+app.use('/patientretrieve', getPatientRetrieveRouter);
 app.use('/get', getRouter);
 app.use('/getvacc', getvaccRouter);
 app.use('/post', postRouter);

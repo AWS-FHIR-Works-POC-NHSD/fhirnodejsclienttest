@@ -1,7 +1,97 @@
 <%- include('partials/header'); -%>
 
+<!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+<!--Font Awesome (added because you use icons in your prepend/append)-->
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
 <H2>Patient page</H2>
 
+<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+<div class="bootstrap-iso">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-6 col-sm-6 col-xs-12">
+    <form action="/patientretrieve" method="GET">
+     <div class="form-group">
+      <label class="control-label requiredField" for="id">
+       Enter NHS Number for patient e.g. 9000000009
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <div class="input-group">
+       <div class="input-group-addon">
+        <i class="fa fa-user-md">
+        </i>
+       </div>
+       <input class="form-control" id="id" name="id" placeholder="9000000009" type="text"/>
+      </div>
+     </div>
+     <div class="form-group">
+      <div>
+       <button class="btn btn-info" name="submit" type="submit">
+        Get patient
+       </button>
+      </div>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>
+
+
 <P>Here are some demographics from PDS 
+
+<div class="container">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>FHIR resource patient id</td>
+        <td><%= id %></td>
+      </tr>
+      <tr>
+        <td>NHS Number (identifier)</td>
+        <td><%= identifier %></td>
+      </tr>
+      <tr>
+        <td>NHS Number (system)</td>
+        <td><%= identifierSystem %></td>
+      </tr>
+      <tr>
+        <td>Given name</td>
+        <td><%= givenName %></td>
+      </tr>
+      <tr>
+        <td>Last name</td>
+        <td><%= lastName %></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td><%= gender %></td>
+      </tr>
+      <tr>
+        <td>Birthdate</td>
+        <td><%= birthDate %></td>
+      </tr>
+      <tr>
+        <td>Deceased datetime</td>
+        <td><%= deceasedDateTime %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <%- include('partials/footer'); -%>
