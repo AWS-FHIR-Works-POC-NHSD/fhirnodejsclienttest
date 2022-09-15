@@ -19,13 +19,13 @@ router.get('/', function(req, res, next) {
 
 console.log("Inside /getpatientretireve!");
 
-console.log("req.query :" + req.body)
+//console.log("req.query :" + req.body)
 //var id = req.query.id;
 var id = 9000000009;
 console.log("The FHIR resource id " + id );
 
 var pds = process.env.HOSTNAMEPDS + 'Patient/' + id;
-console.log("pds = " + pds );
+//console.log("pds = " + pds );
 
 // local instance
 const instance = axios.create({
@@ -42,7 +42,7 @@ const instance = axios.create({
 instance.get( '/Patient/' + id )
   .then(function (response) {
     // handle success
-    console.log(response);
+    //console.log(response);
 
 
     var id                          = "";

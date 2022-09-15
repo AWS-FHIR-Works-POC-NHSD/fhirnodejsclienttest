@@ -23,7 +23,8 @@ router.get('/', function(req, res, next) {
     //global id = req.query.id;
     console.log("The Patient FHIR resource id " + id );
 
-   axios.get('/Immunization/?patient=Patient/' + id )
+/* axios.get('/Immunization/?patient=Patient/' + id ) */
+ axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT)
     .then(function (response) {
         // handle success
         console.log(response.data);
@@ -35,6 +36,7 @@ router.get('/', function(req, res, next) {
 
 global.immCounter = 0;
 global.id = [];
+global.nhsnumber = [];
 global.identifierSystem = [];
 global.identifierValue = [];
 global.status = [];
@@ -62,7 +64,8 @@ for (i = 0; i < numberOfResources; i++) {
       console.log("i is " + i );
 
       global.id[i]                      = response.data.entry[i].resource.id;
-      //global.id[i]                      = 1;
+      //global.id[i]                    = 1;
+      global.nhsnumber[i]               = response.data.entry[i].resource.patient.reference;
       global.identifierSystem[i]        = response.data.entry[i].resource.identifier[0].system;
       global.identifierValue[i]         = response.data.entry[i].resource.identifier[0].value;
       global.status[i]                  = response.data.entry[i].resource.status;
