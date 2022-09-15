@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 
 console.log("Inside /getpatientretireve!");
 
-//console.log("req.query :" + req.body)
+console.log("req.query :" + req.body)
 //var id = req.query.id;
 var id = 9000000009;
 console.log("The FHIR resource id " + id );

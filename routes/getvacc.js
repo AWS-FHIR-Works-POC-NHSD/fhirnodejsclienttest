@@ -48,7 +48,8 @@ axios.get('/Immunization/' + id )
     fulldate                    = response.data.occurrenceDateTime;
     date                        = fulldate.substring(0, 10);
     recorded                    = response.data.recorded;
-    nhsNumber                   = response.data.patient.identifier.value;
+    //nhsNumber                   = response.data.patient.identifier.value;
+    nhsNumber                   = response.data.patient.reference;
     vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
     vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
     vaccineProductCode          = response.data.vaccineCode.coding[0].code;
