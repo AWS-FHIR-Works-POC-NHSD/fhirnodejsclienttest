@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 
 /* axios.get('/Immunization/?patient=Patient/' + id ) */
 /* axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT) */
- axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id)
+ axios.get( axios.defaults.baseURL + '/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id)
     .then(function (response) {
         // handle success
         console.log(response.data);
