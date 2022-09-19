@@ -18,13 +18,15 @@ router.get('/', function(req, res, next) {
 
     console.log("Inside /historyget!");
 
+    console.log("req.query :" + req.query)
     //console.log("req.query :" + req.body)
     var id = req.query.id;
     //global id = req.query.id;
     console.log("The Patient FHIR resource id " + id );
 
 /* axios.get('/Immunization/?patient=Patient/' + id ) */
- axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT)
+/* axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT) */
+ axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id)
     .then(function (response) {
         // handle success
         console.log(response.data);
