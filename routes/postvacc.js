@@ -125,6 +125,7 @@ if (vaccineProcedure == "hpvdose")
   vaccineProductDescription = "Gardasil vaccine suspension for injection 0.5ml pre-filled syringes (Merck Sharp & Dohme (UK) Ltd)";
 }
 
+/* reason aka indication, for vaccination */
 
  if (reason == "diseaseoutbreak")
  { 

@@ -24,9 +24,14 @@ router.get('/', function(req, res, next) {
     //global id = req.query.id;
     console.log("The Patient FHIR resource id " + id );
 
+    //console.log( "axios.defaults.baseURL" + axios.defaults.baseURL );
+    //console.log( "process.env.HOSTNAME" + process.env.HOSTNAME );
+    var URL =  axios.defaults.baseURL + '/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id;
+    console.log( "Axios get call URL: " + URL );
+
 /* axios.get('/Immunization/?patient=Patient/' + id ) */
 /* axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT) */
- axios.get( axios.defaults.baseURL + '/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id)
+ axios.get( URL )
     .then(function (response) {
         // handle success
         console.log(response.data);
@@ -78,9 +83,8 @@ for (i = 0; i < numberOfResources; i++) {
       global.occurrenceDateTime[i]      = response.data.entry[i].resource.occurrenceDateTime;
       global.recorded[i]                = response.data.entry[i].resource.recorded;
       global.primarySource[i]           = response.data.entry[i].resource.primarySource;
-      global.reasonCode                 = response.data.entry[i].resource.reasonCode[0].coding[0].code;
-      global.reasonDescription          = response.data.entry[i].resource.reasonCode[0].coding[0].display;
-
+      global.reasonCode[i]              = response.data.entry[i].resource.reasonCode[0].coding[0].code;
+      global.reasonDescription[i]       = response.data.entry[i].resource.reasonCode[0].coding[0].display;
 
       console.log("Immcounter " + immCounter);
 
