@@ -2,7 +2,7 @@
 
 Running locally, two options 
 
-## Prerequisites
+## Run as a full local Node.js application
 
 Install the usual way
 
