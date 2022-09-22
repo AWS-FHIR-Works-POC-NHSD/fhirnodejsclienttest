@@ -20,7 +20,11 @@
   <tbody>
   <tr>
     <td>Immunisation FHIR resource Id</td>
-    <td><%= id[i] %></td>
+    <td><%= id[i] %> 
+	    <a href="/getvacc?id=<%= id[i] %>">View</a>
+		<a href="/update?id=<%= id[i] %>">Update</a>
+		<a href="/delete?id=<%= id[i] %>">Delete</a>
+    </td>
   </tr>
   <tr>
     <td>NHS Number</td>
