@@ -86,10 +86,10 @@ if (vaccineProcedure == "hpvdose")
   vaccineProductCode = "7374311000001101";
   vaccineProductDescription = "Revaxis vaccine suspension for injection 0.5ml pre-filled syringes (Sanofi Pasteur)";
 }
- if (vaccineProduct == "astrazeneca")
+ if (vaccineProduct == "vaxzevria")
  { 
   vaccineProductCode = "39114911000001105";
-  vaccineProductDescription = "COVID-19 Vaccine AstraZeneca (ChAdOx1 S [recombinant]) 5x10,000,000,000 viral particles/0.5ml dose solution for injection multidose vials (AstraZeneca)";
+  vaccineProductDescription = "COVID-19 Vaccine Vaxzevria (ChAdOx1 S [recombinant]) not less than 2.5x100,000,000 infectious units/0.5ml dose suspension for injection multidose vials (AstraZeneca UK Ltd) ";
 }
  if (vaccineProduct == "comirnaty30")
  { 
