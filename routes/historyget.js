@@ -72,7 +72,8 @@ for (i = 0; i < numberOfResources; i++) {
 
       global.id[i]                      = response.data.entry[i].resource.id;
       //global.id[i]                    = 1;
-      global.nhsnumber[i]               = response.data.entry[i].resource.patient.reference;
+      //global.nhsnumber[i]               = response.data.entry[i].resource.patient.reference;
+      global.nhsnumber[i]               = response.data.entry[i].resource.patient.identifier.value;
       global.identifierSystem[i]        = response.data.entry[i].resource.identifier[0].system;
       global.identifierValue[i]         = response.data.entry[i].resource.identifier[0].value;
       global.status[i]                  = response.data.entry[i].resource.status;

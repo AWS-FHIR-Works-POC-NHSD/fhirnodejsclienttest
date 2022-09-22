@@ -168,7 +168,8 @@ axios.put('/Immunization/' + id,
    ]
   },
   "patient": {
-    "reference": "Patient/" + process.env.PATIENT,
+    /* "reference": "Patient/" + process.env.PATIENT, */
+    "reference": "https://sandbox.api.service.nhs.uk/personal-demographics/Patient/" + nhsNumber,
     "type": "Patient",
     "identifier": {
       "system": "https://fhir.nhs.uk/Id/nhs-number",
