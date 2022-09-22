@@ -4,7 +4,8 @@ var router = express.Router();
 /* DELETE vacc page. */
 router.get('/', function(req, res, next) {
   console.log("Running delete.js")
-  res.render("delete");
+  var todelete = req.query.id;
+  res.render("delete",{todelete : todelete});
   //res.render('index', { title: 'Express' });
 });
 
