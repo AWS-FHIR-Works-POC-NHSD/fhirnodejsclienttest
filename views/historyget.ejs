@@ -1,87 +1,115 @@
 <%- include('partials/header'); -%>
+  <div class="container">
+    <H2>View Vaccination History</H2>
 
-<H2>View Vaccination History</H2>
+    <P>Some retrieved vacc history
 
-<P>Some retrieved vacc history
+    <H2>Vaccination details for patient ID TBC </H2>
 
-<H2>Vaccination details for patient ID TBC </H2>
+    <% for(var i=0; i < immCounter; i++) { %>
+      <P>
 
-<% for(var i=0; i < immCounter; i++) { %>
-<P>
-<div class="container">
-<H4> vaccination number <%= [i+1] %> </H4> 
-  <table class="table table-striped">
-  <thead>
-        <tr>
-        <th>Data</th>
-        <th>Value</th>
-      </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Immunisation FHIR resource Id</td>
-    <td><%= id[i] %> 
-	    <a href="/getvacc?id=<%= id[i] %>">View</a>
-		<a href="/update?id=<%= id[i] %>">Update</a>
-		<a href="/delete?id=<%= id[i] %>">Delete</a>
-    </td>
-  </tr>
-  <tr>
-    <td>NHS Number</td>
-    <td><%= nhsnumber[i] %></td>
-  </tr>
-  <tr>
-    <td>identifier (system)</td>
-    <td><%= identifierSystem[i] %></td>
-  </tr>
-  <tr>
-    <td>identifier (value)</td>
-    <td><%= identifierValue[i] %></td>
-  </tr>
-  <tr>
-    <td>status</td>
-    <td><%= status[i] %></td>
-  </tr>
-  <tr>
-    <td>vaccineProcedure (SNOMED)</td>
-    <td><%= vaccineProcedureCode[i] %></td>
-  </tr>
-  <tr>
-    <td>vaccineProcedure (display)</td>
-    <td><%= vaccineProcedureDisplay[i] %></td>
-  </tr>
-  <tr>
-  <tr>
-    <td>vaccineCode (SNOMED)</td>
-    <td><%= vaccineCodeSNOMED[i] %></td>
-  </tr>
-  <tr>
-    <td>vaccineCode (Display)</td>
-    <td><%= vaccineCodeDisplay[i] %></td>
-  </tr>
-  <tr>
-    <td>occurrenceDateTime</td>
-    <td><%= occurrenceDateTime[i] %></td>
-  </tr>
-  <tr>
-    <td>recorded</td>
-    <td><%= recorded[i] %></td>
-  </tr>
-  <tr>
-    <td>primarySource</td>
-    <td><%= primarySource[i] %></td>
-  </tr>
-  <tr>
-    <td>Reason Code (SNOMED)</td>
-    <td><%= reasonCode[i] %></td>
-  </tr>
-  <tr>
-    <td>Reason Description</td>
-    <td><%= reasonDescription[i] %></td>
-  </tr>
-    </tbody>
-<table>
-</div>
-<% } %>
+      <H4> vaccination number <%= [i+1] %>
+      </H4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Immunisation FHIR resource Id</td>
+            <td>
+              <%= id[i] %>
+                <a href="/getvacc?id=<%= id[i] %>">View</a>
+                <a href="/update?id=<%= id[i] %>">Update</a>
+                <a href="/delete?id=<%= id[i] %>">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>NHS Number</td>
+            <td>
+              <%= nhsnumber[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>identifier (system)</td>
+            <td>
+              <%= identifierSystem[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>identifier (value)</td>
+            <td>
+              <%= identifierValue[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>status</td>
+            <td>
+              <%= status[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>vaccineProcedure (SNOMED)</td>
+            <td>
+              <%= vaccineProcedureCode[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>vaccineProcedure (display)</td>
+            <td>
+              <%= vaccineProcedureDisplay[i] %>
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <td>vaccineCode (SNOMED)</td>
+            <td>
+              <%= vaccineCodeSNOMED[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>vaccineCode (Display)</td>
+            <td>
+              <%= vaccineCodeDisplay[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>occurrenceDateTime</td>
+            <td>
+              <%= occurrenceDateTime[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>recorded</td>
+            <td>
+              <%= recorded[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>primarySource</td>
+            <td>
+              <%= primarySource[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>Reason Code (SNOMED)</td>
+            <td>
+              <%= reasonCode[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>Reason Description</td>
+            <td>
+              <%= reasonDescription[i] %>
+            </td>
+          </tr>
+        </tbody>
+        <table>
+  </div>
+  <% } %>
 
-<%- include('partials/footer'); -%>
+    <%- include('partials/footer'); -%>
