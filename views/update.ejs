@@ -1,208 +1,232 @@
 <%- include('partials/header'); -%>
 
-<H2>UPDATE an existing vaccination record</H2>
-<!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+    <H2>UPDATE an existing vaccination record</H2>
+    <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
-<!--Font Awesome (added because you use icons in your prepend/append)-->
-<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <!--Font Awesome (added because you use icons in your prepend/append)-->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
 
-<!-- Inline CSS based on choices in "Settings" tab -->
-<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+    <!-- Inline CSS based on choices in "Settings" tab -->
+    <style>
+        .bootstrap-iso .formden_header h2,
+        .bootstrap-iso .formden_header p,
+        .bootstrap-iso form {
+            font-family: Arial, Helvetica, sans-serif;
+            color: black
+        }
 
-<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
-<div class="bootstrap-iso">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-6 col-sm-6 col-xs-12">
-    <form action="/updatevacc" method="post">
+        .bootstrap-iso form button,
+        .bootstrap-iso form button:hover {
+            color: white !important;
+        }
 
-    <div class="form-group ">
-      <label class="control-label requiredField" for="id">
-       FHIR Resource id
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user-md">
-        </i>
-       </div>
-       <input class="form-control" id="id" name="id" value="<%= id %>" readonly type="text"/>
-      </div>
+        .asteriskField {
+            color: red;
+        }
+    </style>
+    <div class="container">
+        <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+        <div class="bootstrap-iso">
 
-    <div class="form-group ">
-      <label class="control-label requiredField" for="pocidentifier">
-       POC identifier
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user-md">
-        </i>
-       </div>
-       <input class="form-control" id="pocidentifier" name="pocidentifier" value="<%= POCidentifier %>" type="text"/>
-      </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="nhsnumber">
-       NHS Number
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user-md">
-        </i>
-       </div>
-       <input class="form-control" id="nhsnumber" name="nhsnumber" value="<%= nhsNumber %>" type="text"/>
-      </div>
-     </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form action="/updatevacc" method="post">
 
-     <div class="form-group ">
-      <label class="control-label " for="vaccprocedure">
-       Vaccination Procedure
-      </label>
-      <select class="select form-control" id="vaccprocedure" name="vaccprocedure" value="<%= vaccineProcedure %>"/>
+                        <div class="form-group ">
+                            <label class="control-label requiredField" for="id">
+                                FHIR Resource id
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user-md">
+                                    </i>
+                                </div>
+                                <input class="form-control" id="id" name="id" value="<%= id %>" readonly type="text" />
+                            </div>
 
-      <option value="polioboostercampaign">
-        Polio Booster (campaign)
-       </option>    
-       <option value="covdose1">
-        Covid Vaccination Dose 1
-       </option>
-       <option value="covdose2">
-        Covid Vaccination Dose 2
-       </option>
-       <option value="covbooster">
-        Covid Vaccination Booster
-       </option>
-       <option value="hpvdose">
-        HPV Vaccination Dose
-       </option>
-      </select>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="vaccine">
-       Vaccine Product
-      </label>
-      <select class="select form-control" id="vaccine" name="vaccine" />
-      <option value="infanrixhexa">
-        GlaxoSmithKline Infanrix Hexa
-       </option>
-       <option value="vaxelis">
-        Sanofi Vaxelis
-       </option>
-       <option value="boostrixipv">
-        GlaxoSmithKline Boostrix-IPV
-       </option>
-       <option value="revaxis">
-        Sanofi Pasteur Revaxis
-       </option>
-       <option value="comirnaty30">
-        Pfizer Comirnaty 30
-       </option>
-       <option value="comirnaty10">
-        Pfizer Comirnaty 10 (Children 5-11 yr)
-       </option>
-       <option value="comirnaty0O">
-        Pfizer Comirnaty Bivalent Original/Omicron
-       </option>
-       <option value="spikevax">
-        Moderna Spikevax
-       </option>
-       <option value="modernabspikevax0O">
-        Moderna Bivalent Spikevax 0 (Zero)/O (Omicron)
-       </option>
-       <option value="vaxzevria">
-        AstraZeneca Vaxzevria
-       </option>
-       <option value="gardasil">
-        Gardasil (HPV)
-       </option>
-      </select>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="date">
-       Date of vaccination
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-calendar-check-o">
-        </i>
-       </div>
-       <input class="form-control" id="date" name="date" value="<%= date %>" type="text"/>
-      </div>
-     </div>
-     <div class="form-group ">
-      <label class="control-label requiredField" for="batchnumber">
-       Batch number
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <input class="form-control" id="batchnumber" name="batchnumber" type="text" value="<%= batchNumber %>"/>
-     </div>
-     <div class="form-group ">
-      <label class="control-label " for="expirydate">
-       Expiry date of vaccine product
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-calendar-check-o">
-        </i>
-       </div>
-       <input class="form-control" id="expirydate" name="expirydate" value="<%= expirationDate %>" type="text"/>
-      </div>
-     </div>
+                            <div class="form-group ">
+                                <label class="control-label requiredField" for="pocidentifier">
+                                    POC identifier
+                                    <span class="asteriskField">
+                                        *
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-user-md">
+                                        </i>
+                                    </div>
+                                    <input class="form-control" id="pocidentifier" name="pocidentifier"
+                                        value="<%= POCidentifier %>" type="text" />
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label requiredField" for="nhsnumber">
+                                        NHS Number
+                                        <span class="asteriskField">
+                                            *
+                                        </span>
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user-md">
+                                            </i>
+                                        </div>
+                                        <input class="form-control" id="nhsnumber" name="nhsnumber"
+                                            value="<%= nhsNumber %>" type="text" />
+                                    </div>
+                                </div>
 
-     <div class="form-group">
-      <div>
-       <button class="btn btn-info" name="submit" type="submit">
-        Update vaccination record
-       </button>
-      </div>
-     </div>
-    </form>
-   </div>
-  </div>
- </div>
-</div>
+                                <div class="form-group ">
+                                    <label class="control-label " for="vaccprocedure">
+                                        Vaccination Procedure
+                                    </label>
+                                    <select class="select form-control" id="vaccprocedure" name="vaccprocedure"
+                                        value="<%= vaccineProcedure %>" />
 
-<!-- Extra JavaScript/CSS added manually in "Settings" tab -->
-<!-- Include jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+                                    <option value="polioboostercampaign">
+                                        Polio Booster (campaign)
+                                    </option>
+                                    <option value="covdose1">
+                                        Covid Vaccination Dose 1
+                                    </option>
+                                    <option value="covdose2">
+                                        Covid Vaccination Dose 2
+                                    </option>
+                                    <option value="covbooster">
+                                        Covid Vaccination Booster
+                                    </option>
+                                    <option value="hpvdose">
+                                        HPV Vaccination Dose
+                                    </option>
+                                    </select>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label " for="vaccine">
+                                        Vaccine Product
+                                    </label>
+                                    <select class="select form-control" id="vaccine" name="vaccine" />
+                                    <option value="infanrixhexa">
+                                        GlaxoSmithKline Infanrix Hexa
+                                    </option>
+                                    <option value="vaxelis">
+                                        Sanofi Vaxelis
+                                    </option>
+                                    <option value="boostrixipv">
+                                        GlaxoSmithKline Boostrix-IPV
+                                    </option>
+                                    <option value="revaxis">
+                                        Sanofi Pasteur Revaxis
+                                    </option>
+                                    <option value="comirnaty30">
+                                        Pfizer Comirnaty 30
+                                    </option>
+                                    <option value="comirnaty10">
+                                        Pfizer Comirnaty 10 (Children 5-11 yr)
+                                    </option>
+                                    <option value="comirnaty0O">
+                                        Pfizer Comirnaty Bivalent Original/Omicron
+                                    </option>
+                                    <option value="spikevax">
+                                        Moderna Spikevax
+                                    </option>
+                                    <option value="modernabspikevax0O">
+                                        Moderna Bivalent Spikevax 0 (Zero)/O (Omicron)
+                                    </option>
+                                    <option value="vaxzevria">
+                                        AstraZeneca Vaxzevria
+                                    </option>
+                                    <option value="gardasil">
+                                        Gardasil (HPV)
+                                    </option>
+                                    </select>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label " for="date">
+                                        Date of vaccination
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar-check-o">
+                                            </i>
+                                        </div>
+                                        <input class="form-control" id="date" name="date" value="<%= date %>"
+                                            type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label requiredField" for="batchnumber">
+                                        Batch number
+                                        <span class="asteriskField">
+                                            *
+                                        </span>
+                                    </label>
+                                    <input class="form-control" id="batchnumber" name="batchnumber" type="text"
+                                        value="<%= batchNumber %>" />
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label " for="expirydate">
+                                        Expiry date of vaccine product
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar-check-o">
+                                            </i>
+                                        </div>
+                                        <input class="form-control" id="expirydate" name="expirydate"
+                                            value="<%= expirationDate %>" type="text" />
+                                    </div>
+                                </div>
 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+                                <div class="form-group">
+                                    <div>
+                                        <button class="btn btn-info" name="submit" type="submit">
+                                            Update vaccination record
+                                        </button>
+                                    </div>
+                                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'yyyy-mm-dd',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
+    <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+    <script>
+        $(document).ready(function () {
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'yyyy-mm-dd',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
         })
-    })
-</script>
+    </script>
 
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="expirydate"]'); //our date input has the name "expirydate"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'yyyy-mm-dd',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
+    <script>
+        $(document).ready(function () {
+            var date_input = $('input[name="expirydate"]'); //our date input has the name "expirydate"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'yyyy-mm-dd',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
         })
-    })
-</script>
+    </script>
 
 
 
-<%- include('partials/footer'); -%>
+    <%- include('partials/footer'); -%>

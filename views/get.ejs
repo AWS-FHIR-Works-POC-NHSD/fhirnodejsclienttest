@@ -1,155 +1,199 @@
 <%- include('partials/header'); -%>
 
-<!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+  <!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+  <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
-<!--Font Awesome (added because you use icons in your prepend/append)-->
-<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+  <!--Font Awesome (added because you use icons in your prepend/append)-->
+  <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
 
-<!-- Inline CSS based on choices in "Settings" tab -->
-<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+  <!-- Inline CSS based on choices in "Settings" tab -->
+  <style>
+    .bootstrap-iso .formden_header h2,
+    .bootstrap-iso .formden_header p,
+    .bootstrap-iso form {
+      font-family: Arial, Helvetica, sans-serif;
+      color: black
+    }
 
-<H2>View (GET) an existing vaccination record</H2>
+    .bootstrap-iso form button,
+    .bootstrap-iso form button:hover {
+      color: white !important;
+    }
 
-<!-- HTML Form (wrapped in a .bootstrap-iso div) -->
-<div class="bootstrap-iso">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-6 col-sm-6 col-xs-12">
-    <form action="/getvacc" method="GET">
-     <div class="form-group">
-      <label class="control-label requiredField" for="id">
-       Enter unique FHIR resource ID for vaccination event record
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user-md">
-        </i>
-       </div>
-       <input class="form-control" id="id" name="id" placeholder="12341234" type="text"/>
+    .asteriskField {
+      color: red;
+    }
+  </style>
+  <div class="container">
+    <H2>View (GET) an existing vaccination record</H2>
+
+    <!-- HTML Form (wrapped in a .bootstrap-iso div) -->
+    <div class="bootstrap-iso">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <form action="/getvacc" method="GET">
+              <div class="form-group">
+                <label class="control-label requiredField" for="id">
+                  Enter unique FHIR resource ID for vaccination event record
+                  <span class="asteriskField">
+                    *
+                  </span>
+                </label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user-md">
+                    </i>
+                  </div>
+                  <input class="form-control" id="id" name="id" placeholder="12341234" type="text" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div>
+                  <button class="btn btn-info" name="submit" type="submit">
+                    Get vaccination event
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-     </div>
-     <div class="form-group">
-      <div>
-       <button class="btn btn-info" name="submit" type="submit">
-        Get vaccination event
-       </button>
+    </div>
+
+    <P><br>
+    <H2>Update (PUT) an existing vaccination record</H2>
+
+    <div class="bootstrap-iso">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <form action="/update" method="GET">
+              <div class="form-group">
+                <label class="control-label requiredField" for="id">
+                  Enter unique FHIR resource ID for vaccination event record
+                  <span class="asteriskField">
+                    *
+                  </span>
+                </label>
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user-md">
+                    </i>
+                  </div>
+                  <input class="form-control" id="id" name="id" placeholder="12341234" type="text" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div>
+                  <button class="btn btn-info" name="submit" type="submit">
+                    Update vaccination event
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-     </div>
-    </form>
-   </div>
+    </div>
+
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FHIR resource id</td>
+          <td>
+            <%= id %>
+          </td>
+        </tr>
+        <tr>
+          <td>identifier system</td>
+          <td>
+            <%= identifierSystem %>
+          </td>
+        </tr>
+        <tr>
+          <td>identifier</td>
+          <td>
+            <%= identifier %>
+          </td>
+        </tr>
+        <tr>
+          <td>NHS Number</td>
+          <td>
+            <%= nhsNumber %>
+          </td>
+        </tr>
+        <tr>
+          <td>Vaccination Procedure Code (SNOMED)</td>
+          <td>
+            <%= vaccineProcedureCode %>
+          </td>
+        </tr>
+        <tr>
+          <td>Vaccination Procedure Description</td>
+          <td>
+            <%= vaccineProcedureDescription %>
+          </td>
+        </tr>
+        <tr>
+          <td>Vaccine Product Code (SNOMED)</td>
+          <td>
+            <%= vaccineProductCode %>
+          </td>
+        </tr>
+        <tr>
+          <td>Vaccine Product Description</td>
+          <td>
+            <%= vaccineProductDescription %>
+          </td>
+        </tr>
+        <tr>
+          <td>Date of vaccination (YYYY-MM-DD)</td>
+          <td>
+            <%= date %>
+          </td>
+        </tr>
+        <tr>
+          <td>Recorded date (YYYY-MM-DD)</td>
+          <td>
+            <%= recorded %>
+          </td>
+        </tr>
+        <tr>
+          <td>Batch Number</td>
+          <td>
+            <%= batchNumber %>
+          </td>
+        </tr>
+        <tr>
+          <td>Expiry date (YYYY-MM-DD)</td>
+          <td>
+            <%= expirationDate %>
+          </td>
+        </tr>
+        <tr>
+          <td>Reason Code (SNOMED)</td>
+          <td>
+            <%= reasonCode %>
+          </td>
+        </tr>
+        <tr>
+          <td>Reason Description</td>
+          <td>
+            <%= reasonDescription %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
- </div>
-</div>
-
-<P><br>
-<H2>Update (PUT) an existing vaccination record</H2>
-
-<div class="bootstrap-iso">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-md-6 col-sm-6 col-xs-12">
-    <form action="/update" method="GET">
-     <div class="form-group">
-      <label class="control-label requiredField" for="id">
-       Enter unique FHIR resource ID for vaccination event record
-       <span class="asteriskField">
-        *
-       </span>
-      </label>
-      <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user-md">
-        </i>
-       </div>
-       <input class="form-control" id="id" name="id" placeholder="12341234" type="text"/>
-      </div>
-     </div>
-     <div class="form-group">
-      <div>
-       <button class="btn btn-info" name="submit" type="submit">
-        Update vaccination event
-       </button>
-      </div>
-     </div>
-    </form>
-   </div>
-  </div>
- </div>
-</div>
-
-<div class="container">
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Data</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>FHIR resource id</td>
-        <td><%= id %></td>
-      </tr>
-      <tr>
-        <td>identifier system</td>
-        <td><%= identifierSystem %></td>
-      </tr>
-      <tr>
-        <td>identifier</td>
-        <td><%= identifier %></td>
-      </tr>
-      <tr>
-        <td>NHS Number</td>
-        <td><%= nhsNumber %></td>
-      </tr>
-      <tr>
-        <td>Vaccination Procedure Code (SNOMED)</td>
-        <td><%= vaccineProcedureCode %></td>
-      </tr>
-      <tr>
-        <td>Vaccination Procedure Description</td>
-        <td><%= vaccineProcedureDescription %></td>
-      </tr>
-      <tr>
-        <td>Vaccine Product Code (SNOMED)</td>
-        <td><%= vaccineProductCode %></td>
-      </tr>
-      <tr>
-        <td>Vaccine Product Description</td>
-        <td><%= vaccineProductDescription %></td>
-      </tr>
-      <tr>
-        <td>Date of vaccination (YYYY-MM-DD)</td>
-        <td><%= date %></td>
-      </tr>
-      <tr>
-        <td>Recorded date (YYYY-MM-DD)</td>
-        <td><%= recorded %></td>
-      </tr>
-      <tr>
-        <td>Batch Number</td>
-        <td><%= batchNumber %></td>
-      </tr>
-      <tr>
-        <td>Expiry date (YYYY-MM-DD)</td>
-        <td><%= expirationDate %></td>
-      </tr>
-     <tr>
-        <td>Reason Code (SNOMED)</td>
-        <td><%= reasonCode %></td>
-      </tr>
-      <tr>
-        <td>Reason Description</td>
-        <td><%= reasonDescription %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 
 
-<%- include('partials/footer'); -%>
+  <%- include('partials/footer'); -%>
