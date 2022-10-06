@@ -24,7 +24,7 @@
     "supertest": "^6.3.0"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --silent --coverage",
     "start": "node ./server.js"
   },
   "repository": {
