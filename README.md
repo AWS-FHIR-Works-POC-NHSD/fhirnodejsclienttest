@@ -27,13 +27,13 @@ AUTH_TOKEN=**oauth token**
 4) run it
 
 ```
-node app.js
+node server.js
 ```
 
 or 
 
 ```
-nodemon app.js
+nodemon server.js
 ```
 
 5) access it via web browser 
