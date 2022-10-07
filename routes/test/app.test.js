@@ -21,6 +21,13 @@ describe("Testing the app responses", () => {
 			expect(response.text).toMatch(/<title>EJS demo app</i);
 		});
 
+		test("The hoorid text doesn't happen", async () => {
+			const response = await request(app).get("/");
+			expect(response.text).not.toMatch(/ is not defined/i);
+		});
+
+
+
 		test("The response from the GET method should include the Page Heading: <H2>Home page<", async () => {
 			const response = await request(app).get("/");
 			expect(response.text).toMatch(/<H2>Home page</i);
@@ -99,23 +106,23 @@ describe("Testing the app responses", () => {
 
 	});
 
-	/**
+
+
 	describe("Test the get (/getpatient) route", () => {
 
 		test("Contains the title: <title>EJS demo app<", async () => {
-			const response = await request(app).get("/getpatient");
+			const response = await request(app).get("/patientretrieve?id=9000000009&submit=");
 			expect(response.text).toMatch(/<title>EJS demo app</i);
 		});
 
 
 		test("Contains the header: <H2>View (GET) an existing vaccination record<", async () => {
-			const response = await request(app).get("/getpatient");
+			const response = await request(app).get("/patientretrieve?id=9000000009&submit=");
 			console.log(response.text);
-			expect(response.text).toMatch(/<H2>View \(GET\) an existing vaccination record/i);
-			expect(response.text).toMatch(/<H2>Update \(PUT\) an existing vaccination record/i);
+			expect(response.text).toMatch(/Jane/i);
 		});
 
 	});
-	 */
+
 
 });
