@@ -19,9 +19,17 @@ npm install
 ```
 HOSTNAME=https://www.example.com
 PORT=443
-PATIENT=6998939
+PATIENT=**NHS Number, e.g. test NHS Number like 9000000009**
 XAPIKEY=**key value, e.g. AWS FHIR Works developer key**
 AUTH_TOKEN=**oauth token**
+AUTH_TOKEN_PDS=
+XAPIKEY_PDS=
+SSODOMAIN=
+SSOISSUER=
+SSOCLIENTID=
+SSOCLIENTSECRET
+SSOCALLBACKURL=
+PASSPORTSECRET=
 ```
 
 4) run it
