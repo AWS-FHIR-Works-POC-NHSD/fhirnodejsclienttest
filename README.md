@@ -35,7 +35,7 @@ PASSPORTSECRET=
 4) run it
 
 ```
-node app.js
+node ./server.js
 ```
 
 or 
