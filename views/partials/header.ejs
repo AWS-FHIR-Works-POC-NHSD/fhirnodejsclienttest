@@ -33,4 +33,13 @@
 
   <div class="b-example-divider"></div>
 
+<% if (authenticated) { %>
+  <a button type="button" class="btn btn-primary" href="/logout">Logout</button></a>
+<% } else { %>
+  <a button type="button" class="btn btn-primary" href="/login">Login</button></a>
+<% } %>
 
+
+  <%if (locals.username) { %>
+    <P>User: <%- username %></h2>
+  <% } %>

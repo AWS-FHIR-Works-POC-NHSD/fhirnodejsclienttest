@@ -9,9 +9,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
 
+const session = require('express-session');
+const passport = require('passport');
+const { Strategy } = require('passport-openidconnect');
+
+var authenticated = false;
+
 const methodOverride = require('method-override')
 
 var homeRouter        = require('./routes/home');
+var indexRouter       = require('./routes/index');
+var usersRouter       = require('./routes/users');
 var getPatientRouter  = require('./routes/getpatient');
 var getPatientRetrieveRouter  = require('./routes/patientretrieve');
 var getRouter         = require('./routes/get');
@@ -45,7 +53,58 @@ app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
 app.use(methodOverride('_method'))
 
+
+app.use(session({
+  secret: process.env.PASSPORTSECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// set up passport
+passport.use('oidc', new Strategy({
+  issuer: process.env.SSOISSUER,
+  authorizationURL: process.env.SSOISSUER + '/v1/authorize',
+  tokenURL: process.env.SSOISSUER + '/v1/token',
+  userInfoURL: process.env.SSOISSUER + '/v1/userinfo',
+  clientID: process.env.SSOCLIENTID,
+  clientSecret: process.env.SSOCLIENTSECRET,
+  callbackURL: process.env.SSOCALLBACKURL,
+  scope: 'openid profile'
+}, (issuer, profile, done) => {
+  return done(null, profile);
+}));
+
+passport.serializeUser((user, next) => {
+  next(null, user);
+});
+
+passport.deserializeUser((obj, next) => {
+  next(null, obj);
+});
+
+
+app.use('/authorization-code/callback',
+  passport.authenticate('oidc', { failureRedirect: '/error' }),
+  (req, res) => {
+    console.log("req.user=" + req.user);
+    res.redirect('/');
+  }
+);
+
+app.post('/logout', (req, res) => {
+  req.logout();
+  req.session.destroy();
+  res.redirect('/');
+});
+
+
 app.use('/', homeRouter);
+app.use('/users', usersRouter);
+app.use('/login', passport.authenticate('oidc'));
+app.use('/logout', homeRouter);
 app.use('/patient', getPatientRouter);
 app.use('/patientretrieve', getPatientRetrieveRouter);
 app.use('/get', getRouter);

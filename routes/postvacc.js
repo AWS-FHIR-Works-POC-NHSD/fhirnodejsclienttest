@@ -239,10 +239,15 @@ axios.post('/Immunization',
    }
   )
   .then(function (response) {
-    //console.log(response);
+
     var newVaccId = response.data.id;
     console.log("newVaccId = " + newVaccId);
-    res.render("postcreated", { newVaccId : newVaccId } );
+    res.render("postcreated", {
+     newVaccId : newVaccId,
+     user: req.user, 
+     authenticated: req.isAuthenticated()
+    });
+
   })
   .catch(function (error) {
     console.log(error);
