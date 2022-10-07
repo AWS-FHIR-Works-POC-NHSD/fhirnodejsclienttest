@@ -41,7 +41,7 @@ node ./server.js
 or 
 
 ```
-nodemon app.js
+nodemon ./server.js
 ```
 
 5) access it via web browser 
