@@ -17,21 +17,21 @@ var authenticated = false;
 
 const methodOverride = require('method-override')
 
-var homeRouter        = require('./routes/home');
-var indexRouter       = require('./routes/index');
-var usersRouter       = require('./routes/users');
-var getPatientRouter  = require('./routes/getpatient');
-var getPatientRetrieveRouter  = require('./routes/patientretrieve');
-var getRouter         = require('./routes/get');
-var getvaccRouter     = require('./routes/getvacc');
-var postRouter        = require('./routes/post');
-var postvaccRouter    = require('./routes/postvacc');
-var updateRouter      = require('./routes/update');
-var updatevaccRouter  = require('./routes/updatevacc');
-var deleteRouter      = require('./routes/delete');
-var deletevaccRouter  = require('./routes/deletevacc');
-var historyRouter     = require('./routes/history');
-var historyretrievedRouter     = require('./routes/historyget');
+var homeRouter = require('./routes/home');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var getPatientRouter = require('./routes/getpatient');
+var getPatientRetrieveRouter = require('./routes/patientretrieve');
+var getRouter = require('./routes/get');
+var getvaccRouter = require('./routes/getvacc');
+var postRouter = require('./routes/post');
+var postvaccRouter = require('./routes/postvacc');
+var updateRouter = require('./routes/update');
+var updatevaccRouter = require('./routes/updatevacc');
+var deleteRouter = require('./routes/delete');
+var deletevaccRouter = require('./routes/deletevacc');
+var historyRouter = require('./routes/history');
+var historyretrievedRouter = require('./routes/historyget');
 
 require('dotenv').config()
 
@@ -41,15 +41,15 @@ dotenv.config();
 
 // view engine setup
 //app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true}));
-app.set("view engine","ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(methodOverride('_method'))
 
@@ -119,12 +119,12 @@ app.use('/history', historyRouter);
 app.use('/historyget', historyretrievedRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -136,4 +136,4 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(port, () => console.log("Server listening on port " + port ));
+//app.listen(port, () => console.log("Server listening on port " + port ));

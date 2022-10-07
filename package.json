@@ -22,10 +22,13 @@
     "serve-favicon": "^2.5.0",
     "uuid": "^8.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^29.1.2",
+    "supertest": "^6.3.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./bin/www"
+    "test": "jest --silent --coverage",
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",
