@@ -93,9 +93,11 @@ for (i = 0; i < numberOfResources; i++) {
 
 }
 
-        res.render("historyget", { 
-        })
+    res.render("historyget", { 
+      user: req.user, 
+      authenticated: req.isAuthenticated()
     })
+})
    .catch(function (error) {
        // handle error
        console.log(error);

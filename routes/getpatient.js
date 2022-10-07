@@ -28,19 +28,11 @@ console.log("Inside /getpatient");
       lastName : lastName,
       gender : gender,
       birthDate : birthDate,
-      deceasedDateTime : deceasedDateTime
+      deceasedDateTime : deceasedDateTime,
+      user: req.user, 
+      authenticated: req.isAuthenticated()
     })
 
-});
-
-module.exports = router;
-
-
-
-/* GET patient page. */
-router.get('/', function(req, res, next) {
-  res.render("patient");
-  //res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

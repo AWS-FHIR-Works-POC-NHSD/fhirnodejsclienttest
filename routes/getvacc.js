@@ -73,7 +73,9 @@ axios.get('/Immunization/' + id )
       batchNumber : batchNumber,
       expirationDate : expirationDate,
       reasonCode : reasonCode,
-      reasonDescription : reasonDescription
+      reasonDescription : reasonDescription,
+      user: req.user, 
+      authenticated: req.isAuthenticated()
     })
   })
   .catch(function (error) {

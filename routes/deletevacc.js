@@ -24,8 +24,11 @@ console.log("The Immunization_Id is " + id );
 axios.delete('Immunization/' + id )
   .then(function (response) {
     // handle success
-    //console.log(response);
-    res.render("deletevacc", { id : id });
+    res.render("deletevacc", {
+     id : id,
+     user: req.user, 
+     authenticated: req.isAuthenticated()
+   });
   })
   .catch(function (error) {
     // handle error
