@@ -24,6 +24,7 @@ XAPIKEY=**key value, e.g. AWS FHIR Works developer key**
 AUTH_TOKEN=**oauth token**
 AUTH_TOKEN_PDS=
 XAPIKEY_PDS=
+PDSENDPOINT=https://sandbox.api.service.nhs.uk/personal-demographics/FHIR/R4
 SSODOMAIN=
 SSOISSUER=
 SSOCLIENTID=
