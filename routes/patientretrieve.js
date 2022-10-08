@@ -20,17 +20,16 @@ router.get('/', function (req, res, next) {
 
   console.log("Inside /getpatientretireve!");
 
-  //console.log("req.query :" + req.body)
-  //var id = req.query.id;
-  var id = 9000000009;
+  var id = req.query.id;
   console.log("The FHIR resource id " + id);
+  //var id = 9000000009;
 
   var pds = process.env.HOSTNAMEPDS + 'Patient/' + id;
   //console.log("pds = " + pds );
 
   // local instance
   const instance = axios.create({
-    baseURL: 'https://sandbox.api.service.nhs.uk/personal-demographics/FHIR/R4',
+    baseURL: process.env.PDSENDPOINT,
     headers: {
       common: {
         Authorization: process.env.AUTH_TOKEN_PDS,
