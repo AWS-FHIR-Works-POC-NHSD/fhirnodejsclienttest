@@ -12,6 +12,35 @@
 
 <!--  For other bootstrap colours see https://getbootstrap.com/docs/4.1/utilities/colors/ -->
   <header class="p-3 bg-primary text-white">
+    <div class="container-fluid">
+      <div class="d-flex flex-row-reverse">
+        <a href="/" class="d-flex align-items-end mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+<%if (locals.username) { %>
+  <P>User: <%- username %></P>
+<% } %>
+
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="d-flex flex-row-reverse">
+        <a href="/" class="d-flex align-items-end mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+<% if (authenticated) { %>
+<P>
+<form action="/logout" method="post" id="myForm2">
+  <button type="submit" class="btn btn-primary">Logout</button></a>
+</form>
+<% } else { %>
+  <a button type="button" class="btn btn-primary" href="/login">Login</button></a>
+<% } %>
+
+      </div>
+    </div>
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -33,13 +62,12 @@
 
   <div class="b-example-divider"></div>
 
-<% if (authenticated) { %>
-  <a button type="button" class="btn btn-primary" href="/logout">Logout</button></a>
-<% } else { %>
-  <a button type="button" class="btn btn-primary" href="/login">Login</button></a>
-<% } %>
+<!--
+<form action="/login" method="get" id="myForm1">
+    <button type="submit" class="btn btn-sm btn-info" name="something1"><i class="fa fa-check"></i>Login</button>
+</form>
 
-
-  <%if (locals.username) { %>
-    <P>User: <%- username %></h2>
-  <% } %>
+<form action="/logout" method="post" id="myForm2">
+    <button type="submit" class="btn btn-sm btn-info" name="something2"><i class="fa fa-check"></i>Logout</button>
+</form>
+-->

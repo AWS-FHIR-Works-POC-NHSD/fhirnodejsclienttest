@@ -4,7 +4,6 @@ var router = express.Router();
 /* GET index page. */
 router.get('/', function(req, res, next) {
   res.render("index", { authenticated: req.isAuthenticated() });
-  //res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

@@ -94,17 +94,27 @@ app.use('/authorization-code/callback',
   }
 );
 
+app.post('/logout', function(req, res, next) {
+  console.log("POST logout")
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
+
+/*
 app.post('/logout', (req, res) => {
+  console.log("POST logout")
   req.logout();
   req.session.destroy();
   res.redirect('/');
 });
-
+*/
 
 app.use('/', homeRouter);
 app.use('/users', usersRouter);
 app.use('/login', passport.authenticate('oidc'));
-app.use('/logout', homeRouter);
+//app.use('/logout', homeRouter);
 app.use('/patient', getPatientRouter);
 app.use('/patientretrieve', getPatientRetrieveRouter);
 app.use('/get', getRouter);
