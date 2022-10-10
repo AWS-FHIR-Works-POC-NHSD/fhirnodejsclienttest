@@ -18,94 +18,102 @@ router.get('/', function(req, res, next) {
 
     console.log("Inside /historyget!");
 
-    console.log("req.query :" + req.query)
-    //console.log("req.query :" + req.body)
-    var id = req.query.id;
-    //global id = req.query.id;
-    console.log("The Patient FHIR resource id " + id );
+    if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
 
-    //console.log( "axios.defaults.baseURL" + axios.defaults.baseURL );
-    //console.log( "process.env.HOSTNAME" + process.env.HOSTNAME );
-    var URL =  axios.defaults.baseURL + '/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id;
-    console.log( "Axios get call URL: " + URL );
+        console.log("req.query :" + req.query)
+        //console.log("req.query :" + req.body)
+        var id = req.query.id;
+        //global id = req.query.id;
+        console.log("The Patient FHIR resource id " + id);
 
-/* axios.get('/Immunization/?patient=Patient/' + id ) */
-/* axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT) */
- axios.get( URL )
-    .then(function (response) {
-        // handle success
-        console.log(response.data);
-        console.log("success");
-        
-        //var numberOfResources = "3";
-        var numberOfResources = response.data.total;
-        console.log("numberOfResources : " + numberOfResources);
+        //console.log( "axios.defaults.baseURL" + axios.defaults.baseURL );
+        //console.log( "process.env.HOSTNAME" + process.env.HOSTNAME );
+        var URL = axios.defaults.baseURL + '/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id;
+        console.log("Axios get call URL: " + URL);
 
-global.immCounter = 0;
-global.id = [];
-global.nhsnumber = [];
-global.identifierSystem = [];
-global.identifierValue = [];
-global.status = [];
-global.vaccineProcedureCode = [];
-global.vaccineProcedureDisplay = [];
-global.vaccineCodeSNOMED = []; 
-global.vaccineCodeDisplay = []; 
-global.occurrenceDateTime = [];
-global.recorded = [];
-global.primarySource = [];
-global.reasonCode = [];
-global.reasonDescription = [];
+        /* axios.get('/Immunization/?patient=Patient/' + id ) */
+        /* axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT) */
+        axios.get(URL)
+            .then(function (response) {
+                // handle success
+                console.log(response.data);
+                console.log("success");
 
-for (i = 0; i < numberOfResources; i++) {
+                //var numberOfResources = "3";
+                var numberOfResources = response.data.total;
+                console.log("numberOfResources : " + numberOfResources);
 
-    console.log("i : " + i);
+                global.immCounter = 0;
+                global.id = [];
+                global.nhsnumber = [];
+                global.identifierSystem = [];
+                global.identifierValue = [];
+                global.status = [];
+                global.vaccineProcedureCode = [];
+                global.vaccineProcedureDisplay = [];
+                global.vaccineCodeSNOMED = [];
+                global.vaccineCodeDisplay = [];
+                global.occurrenceDateTime = [];
+                global.recorded = [];
+                global.primarySource = [];
+                global.reasonCode = [];
+                global.reasonDescription = [];
 
-    var resource = response.data.entry[i].resource.resourceType;
-    console.log( "this is the resource " + resource );
+                for (i = 0; i < numberOfResources; i++) {
 
-   if (resource == "Immunization")  {
+                    console.log("i : " + i);
 
-      global.immCounter++;
+                    var resource = response.data.entry[i].resource.resourceType;
+                    console.log("this is the resource " + resource);
 
-      console.log("i is " + i );
+                    if (resource == "Immunization") {
 
-      global.id[i]                      = response.data.entry[i].resource.id;
-      //global.id[i]                    = 1;
-      //global.nhsnumber[i]               = response.data.entry[i].resource.patient.reference;
-      global.nhsnumber[i]               = response.data.entry[i].resource.patient.identifier.value;
-      global.identifierSystem[i]        = response.data.entry[i].resource.identifier[0].system;
-      global.identifierValue[i]         = response.data.entry[i].resource.identifier[0].value;
-      global.status[i]                  = response.data.entry[i].resource.status;
-      global.vaccineProcedureCode[i]    = response.data.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code;   
-      global.vaccineProcedureDisplay[i] = response.data.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display;
-      global.vaccineCodeSNOMED[i]       = response.data.entry[i].resource.vaccineCode.coding[0].code;
-      global.vaccineCodeDisplay[i]      = response.data.entry[i].resource.vaccineCode.coding[0].display;
-      global.occurrenceDateTime[i]      = response.data.entry[i].resource.occurrenceDateTime;
-      global.recorded[i]                = response.data.entry[i].resource.recorded;
-      global.primarySource[i]           = response.data.entry[i].resource.primarySource;
-      global.reasonCode[i]              = response.data.entry[i].resource.reasonCode[0].coding[0].code;
-      global.reasonDescription[i]       = response.data.entry[i].resource.reasonCode[0].coding[0].display;
+                        global.immCounter++;
 
-      console.log("Immcounter " + immCounter);
+                        console.log("i is " + i);
 
+                        global.id[i] = response.data.entry[i].resource.id;
+                        //global.id[i]                    = 1;
+                        //global.nhsnumber[i]               = response.data.entry[i].resource.patient.reference;
+                        global.nhsnumber[i] = response.data.entry[i].resource.patient.identifier.value;
+                        global.identifierSystem[i] = response.data.entry[i].resource.identifier[0].system;
+                        global.identifierValue[i] = response.data.entry[i].resource.identifier[0].value;
+                        global.status[i] = response.data.entry[i].resource.status;
+                        global.vaccineProcedureCode[i] = response.data.entry[i].resource.extension[0].valueCodeableConcept.coding[0].code;
+                        global.vaccineProcedureDisplay[i] = response.data.entry[i].resource.extension[0].valueCodeableConcept.coding[0].display;
+                        global.vaccineCodeSNOMED[i] = response.data.entry[i].resource.vaccineCode.coding[0].code;
+                        global.vaccineCodeDisplay[i] = response.data.entry[i].resource.vaccineCode.coding[0].display;
+                        global.occurrenceDateTime[i] = response.data.entry[i].resource.occurrenceDateTime;
+                        global.recorded[i] = response.data.entry[i].resource.recorded;
+                        global.primarySource[i] = response.data.entry[i].resource.primarySource;
+                        global.reasonCode[i] = response.data.entry[i].resource.reasonCode[0].coding[0].code;
+                        global.reasonDescription[i] = response.data.entry[i].resource.reasonCode[0].coding[0].display;
+
+                        console.log("Immcounter " + immCounter);
+
+                    }
+
+                }
+                if (process.env.AUTHENTICATE == "false" || req.isAuthenticated()) {
+                    res.render("historyget", {
+                        user: req.user,
+                        authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
+                        username: req.user ? req.user.username : ""
+                    })
+                } else {
+                    res.redirect('/login');
+                }
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+    } else {
+        res.redirect('/login');
     }
-
-}
-
-    res.render("historyget", { 
-      user: req.user, 
-      authenticated: req.isAuthenticated()
-    })
-})
-   .catch(function (error) {
-       // handle error
-       console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-
 });
 
 

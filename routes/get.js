@@ -20,25 +20,29 @@ router.get('/', function(req, res, next) {
     var reasonCode                  = "";
     var reasonDescription           = "";
 
-  res.render("get",{ 
-      id : id,
-      identifier : identifier,
-      identifierSystem : identifierSystem,
-      nhsNumber : nhsNumber,
-      date : date,
-      recorded : recorded,
-      vaccineProcedureCode : vaccineProcedureCode,
-      vaccineProcedureDescription : vaccineProcedureDescription,
-      vaccineProductCode : vaccineProductCode,
-      vaccineProductDescription : vaccineProductDescription,
-      batchNumber : batchNumber,
-      expirationDate : expirationDate,
-      reasonCode : reasonCode,
-      reasonDescription : reasonDescription,
-      user: req.user, 
-      authenticated: req.isAuthenticated()
-  });
-  
+    if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
+        res.render("get", {
+            id: id,
+            identifier: identifier,
+            identifierSystem: identifierSystem,
+            nhsNumber: nhsNumber,
+            date: date,
+            recorded: recorded,
+            vaccineProcedureCode: vaccineProcedureCode,
+            vaccineProcedureDescription: vaccineProcedureDescription,
+            vaccineProductCode: vaccineProductCode,
+            vaccineProductDescription: vaccineProductDescription,
+            batchNumber: batchNumber,
+            expirationDate: expirationDate,
+            reasonCode: reasonCode,
+            reasonDescription: reasonDescription,
+            authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
+            user: req.user,
+            username: req.user ? req.user.username : ""
+        });
+    } else {
+        res.redirect('/login');
+    }
 });
 
 module.exports = router;

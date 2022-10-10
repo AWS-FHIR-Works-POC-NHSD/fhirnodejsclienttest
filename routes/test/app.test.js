@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../../app");
-
+process.env.AUTHENTICATE = false; //Doing this ensures that the routes can be accessed without authentication
 describe("Testing the app responses", () => {
 
 	describe("Test the root (/) route", () => {

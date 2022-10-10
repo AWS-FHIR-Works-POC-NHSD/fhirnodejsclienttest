@@ -17,14 +17,14 @@ console.log("req.isAuthenticated()=" + req.isAuthenticated() )
    res.render("home", { 
     user: user, 
     username: username,
-    authenticated: req.isAuthenticated() 
+    authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated()
   });
 
 
 /*
   res.render("home", { 
     user: req.user, 
-    username: req.user.username,
+    username: req.user ? req.user.username : "",
     authenticated: req.isAuthenticated() 
   });
     */
