@@ -10,28 +10,33 @@ dotenv.config();
 router.get('/', function(req, res, next) {
 
 console.log("Inside /getpatient");
+if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
+    var id = "";
+    var identifier = "";
+    var identifierSystem = "";
+    var givenName = "";
+    var lastName = "";
+    var gender = "";
+    var birthDate = "";
+    var deceasedDateTime = "";
 
-    var id                          = "";
-    var identifier                  = "";
-    var identifierSystem            = "";
-    var givenName                   = "";   
-    var lastName                   = "";   
-    var gender                      = "";
-    var birthDate                   = "";
-    var deceasedDateTime            = "";
-    
-    res.render("patient",{
-      id : id,
-      identifier : identifier,
-      identifierSystem : identifierSystem,
-      givenName : givenName,
-      lastName : lastName,
-      gender : gender,
-      birthDate : birthDate,
-      deceasedDateTime : deceasedDateTime,
-      user: req.user, 
-      authenticated: req.isAuthenticated()
-    })
+    res.render("patient", {
+        id: id,
+        identifier: identifier,
+        identifierSystem: identifierSystem,
+        givenName: givenName,
+        lastName: lastName,
+        gender: gender,
+        birthDate: birthDate,
+        deceasedDateTime: deceasedDateTime,
+        user: req.user,
+        authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
+        username: req.user ? req.user.username : ""
+    });
+
+} else {
+        res.redirect('/login');
+}
 
 });
 

@@ -7,11 +7,16 @@ router.get('/', function(req, res, next) {
   console.log("Running delete.js")
   var todelete = req.query.id;
 
-  res.render("delete",{
-    todelete : todelete,
-    user: req.user, 
-    authenticated: req.isAuthenticated()
-  });
+  if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
+    res.render("delete", {
+      todelete: todelete,
+      user: req.user,
+      authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
+      username: req.user ? req.user.username : ""
+    });
+  } else {
+    res.redirect('/login');
+  }
 
 });
 
