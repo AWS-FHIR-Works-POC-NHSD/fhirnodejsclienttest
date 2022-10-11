@@ -3,6 +3,7 @@ const app = require("../../app");
 const axios = require('axios');
 
 jest.mock("axios");
+
 describe("Testing the app responses with Axios mocked", () => {
 
 	describe("Test the delete (/deletevacc!) route", () => {

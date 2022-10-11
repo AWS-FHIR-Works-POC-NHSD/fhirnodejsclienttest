@@ -24,13 +24,13 @@ router.post('/', function(req, res, next) {
   if ( process.env.AUTHENTICATE == 'false' || req.isAuthenticated() ) {
 
       //var POCidentifier    = req.body.pocidentifier
-      var nhsNumber = req.body.nhsnumber;
+      var nhsNumber        = req.body.nhsnumber;
       var vaccineProcedure = req.body.vaccprocedure;
-      var vaccineProduct = req.body.vaccine;
-      var date = req.body.date + "T00:00:00.000+00:00";
-      var expirationDate = req.body.expirydate;
-      var lotNumber = req.body.batchnumber;
-      var reason = req.body.reason;
+      var vaccineProduct   = req.body.vaccine;
+      var date             = req.body.date + "T00:00:00.000+00:00";
+      var expirationDate   = req.body.expirydate;
+      var lotNumber        = req.body.batchnumber;
+      var reason           = req.body.reason;
 
       const rdate = require('date-and-time')
 // Creating object of current date and time by using Date()
@@ -128,12 +128,6 @@ router.post('/', function(req, res, next) {
 
       var POCidentifier = uuidv4();
 
-//console.log("THE VACCINE CHOSEN IN UI IS " + vaccineProduct);
-      console.log("vaccineProductCode " + vaccineProductCode);
-      console.log("vaccineProductDescription " + vaccineProductDescription);
-      console.log("POCidentifier " + POCidentifier);
-
-
       axios.post('/Immunization',
           {
               "resourceType": "Immunization",
@@ -169,10 +163,7 @@ router.post('/', function(req, res, next) {
                   ]
               },
               "patient": {
-                  /*
-                  "reference": "Patient/" + process.env.PATIENT,
-                  */
-                  "reference": "https://sandbox.api.service.nhs.uk/personal-demographics/Patient/9000000009",
+                  "reference": process.env.PDSENDPOINT + '/Patient/' + nhsNumber,
                   "type": "Patient",
                   "identifier": {
                       "system": "https://fhir.nhs.uk/Id/nhs-number",
