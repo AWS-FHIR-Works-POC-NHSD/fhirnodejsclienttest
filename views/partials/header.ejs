@@ -33,7 +33,7 @@
 <% if (authenticated) { %>
 <P>
 <form action="/logout" method="post" id="myForm2">
-  <button type="submit" class="btn btn-primary">Logout</button></a>
+  <button type="submit" class="btn btn-primary">Logout</button>
 </form>
 <% } else { %>
   <a type="button" class="btn btn-primary" href="/login">Login</a>
@@ -48,19 +48,13 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="/"        class="nav-link px-2 text-white">Home</a></li>
           <% if (authenticated) { %>
-          <li><a href="/patient" class="nav-link px-2 text-white">View patient (GET)</a></li>
-		      <li><a href="/post"    class="nav-link px-2 text-white">Create vaccination event (POST)</a></li>
-		      <li><a href="/get"     class="nav-link px-2 text-white">View (GET) & Update (PUT) vaccination event</a></li>
-		      <li><a href="/delete"  class="nav-link px-2 text-white">Delete vaccination event</a></li>
-          <li><a href="/history" class="nav-link px-2 text-white">View vaccination history (GET)</a></li>
-          <% } else { %>
-            <li><a href="/patient" class="nav-link px-2 text-white-50">View patient (GET)</a></li>
-            <li><a href="/post"    class="nav-link px-2 text-white-50">Create vaccination event (POST)</a></li>
-            <li><a href="/get"     class="nav-link px-2 text-white-50">View (GET) & Update (PUT) vaccination event</a></li>
-            <li><a href="/delete"  class="nav-link px-2 text-white-50">Delete vaccination event</a></li>
-            <li><a href="/history" class="nav-link px-2 text-white-50">View vaccination history (GET)</a></li>
+            <li><a href="/"        class="nav-link px-2 text-white">Home</a></li>
+            <li><a href="/patient" class="nav-link px-2 text-white">View patient (GET)</a></li>
+            <li><a href="/post"    class="nav-link px-2 text-white">Create vaccination event (POST)</a></li>
+            <li><a href="/get"     class="nav-link px-2 text-white">View (GET) & Update (PUT) vaccination event</a></li>
+            <li><a href="/delete"  class="nav-link px-2 text-white">Delete vaccination event</a></li>
+            <li><a href="/history" class="nav-link px-2 text-white">View vaccination history (GET)</a></li>
           <%}%>
         </ul>
 
