@@ -154,7 +154,7 @@ router.post('/', function(req, res, next) {
               },
               "patient": {
                   /* "reference": "Patient/" + process.env.PATIENT, */
-                  "reference": "https://sandbox.api.service.nhs.uk/personal-demographics/Patient/" + nhsNumber,
+                  "reference": process.env.PDSENDPOINT + '/Patient/' + nhsNumber,
                   "type": "Patient",
                   "identifier": {
                       "system": "https://fhir.nhs.uk/Id/nhs-number",
