@@ -19,6 +19,11 @@ npm install
 ```
 HOSTNAME=https://www.example.com
 PORT=443
+FHIRTENANTID=
+FHIRCLIENTID=
+FHIRCLIENTSECRET=
+FHIRSUBSCRIPTIONID=
+FHIRSERVER=
 PATIENT=**NHS Number, e.g. test NHS Number like 9000000009**
 XAPIKEY=**key value, e.g. AWS FHIR Works developer key**
 AUTH_TOKEN=**oauth token**

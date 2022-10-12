@@ -7,16 +7,11 @@ var bodyParser = require("body-parser");
 var dotenv = require('dotenv');
 dotenv.config();
 
-axios.defaults.baseURL = process.env.HOSTNAME;
-axios.defaults.headers.common['Authorization'] = process.env.AUTH_TOKEN;
-axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
-axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 /* GET VACC (retrieve) page. */
 router.get('/', function(req, res, next) {
 
     console.log("Inside /historyget!");
+    //console.log("Axios bearer token is as follows : " +  );
 
     if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
 
@@ -28,19 +23,23 @@ router.get('/', function(req, res, next) {
 
         //console.log( "axios.defaults.baseURL" + axios.defaults.baseURL );
         //console.log( "process.env.HOSTNAME" + process.env.HOSTNAME );
-        var URL = axios.defaults.baseURL + '/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + id;
+        var URL = '/Immunization/?patient=' + process.env.PDSENDPOINT + '/Patient/' + id;
         console.log("Axios get call URL: " + URL);
 
-        /* axios.get('/Immunization/?patient=Patient/' + id ) */
-        /* axios.get('/Immunization/?patient=https://sandbox.api.service.nhs.uk/personal-demographics/Patient/' + process.env.PATIENT) */
-        axios.get(URL)
+         axios.get(URL)
             .then(function (response) {
                 // handle success
                 console.log(response.data);
                 console.log("success");
 
-                //var numberOfResources = "3";
-                var numberOfResources = response.data.total;
+                var numberOfResources = 0;
+                if (JSON.stringify(response.data).indexOf("entry") > 0 ) {
+                    console.log("Vaccination entry or entries exists");
+                    numberOfResources = response.data.entry.length;
+                } else {
+                    console.log("No vaccination  entry exists");
+                    numberOfResources =0;
+                }
                 console.log("numberOfResources : " + numberOfResources);
 
                 global.immCounter = 0;
@@ -59,7 +58,7 @@ router.get('/', function(req, res, next) {
                 global.reasonCode = [];
                 global.reasonDescription = [];
 
-                for (i = 0; i < numberOfResources; i++) {
+                 for (i = 0; i < numberOfResources; i++) { 
 
                     console.log("i : " + i);
 
@@ -71,11 +70,11 @@ router.get('/', function(req, res, next) {
                         global.immCounter++;
 
                         console.log("i is " + i);
+                        console.log( JSON.stringify( response.data.entry[i] ) );
 
                         global.id[i] = response.data.entry[i].resource.id;
-                        //global.id[i]                    = 1;
-                        //global.nhsnumber[i]               = response.data.entry[i].resource.patient.reference;
-                        global.nhsnumber[i] = response.data.entry[i].resource.patient.identifier.value;
+                        //global.nhsnumber[i] = response.data.entry[i].resource.patient.identifier.value;
+                        global.nhsnumber[i] = response.data.entry[i].resource.patient.reference;
                         global.identifierSystem[i] = response.data.entry[i].resource.identifier[0].system;
                         global.identifierValue[i] = response.data.entry[i].resource.identifier[0].value;
                         global.status[i] = response.data.entry[i].resource.status;

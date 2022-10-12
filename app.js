@@ -12,6 +12,8 @@ var favicon = require('serve-favicon');
 const session = require('express-session');
 const passport = require('passport');
 const { Strategy } = require('passport-openidconnect');
+const axios = require('axios');
+const qs = require('qs');
 
 var authenticated = false;
 
@@ -87,11 +89,11 @@ passport.deserializeUser((obj, next) => {
 
 
 app.use('/authorization-code/callback',
-  passport.authenticate('oidc', { failureRedirect: '/error' }),
-  (req, res) => {
-    console.log("req.user=" + req.user);
-    res.redirect('/');
-  }
+    passport.authenticate('oidc', { failureRedirect: '/error' }),
+    (req, res) => {
+      console.log("req.user=" + req.user);
+      res.redirect('/');
+    }
 );
 
 app.post('/logout', function(req, res, next) {
@@ -143,6 +145,42 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Get Azure Access token
+
+const APP_ID = process.env.FHIRCLIENTID;
+const APP_SECRET = process.env.FHIRCLIENTSECRET;
+const TOKEN_ENDPOINT ='https://login.microsoftonline.com/' + process.env.FHIRTENANTID + '/oauth2/token';
+const FHIR_SERVER = process.env.FHIRSERVER;
+
+const postData = {
+  client_id: APP_ID,
+  client_secret: APP_SECRET,
+  grant_type: 'Client_Credentials',
+  resource: FHIR_SERVER
+};
+
+axios.defaults.baseURL = process.env.HOSTNAME;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.common['Accept'] = 'application/json';
+
+let token = '';
+
+try {
+  axios
+      .post(TOKEN_ENDPOINT, qs.stringify(postData))
+      .then(response => {
+        //console.log(response.data);
+        //console.log("Bearer token is this :" + response.data.access_token );
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+} catch(e) {
+  console.log('Error raised when fetching bearer token');
+  console.log(e);
+}
 
 module.exports = app;
 
