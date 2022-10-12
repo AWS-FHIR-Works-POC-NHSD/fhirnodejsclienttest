@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("../../app");
 const axios = require('axios');
+process.env.AUTHENTICATE = false; //Doing this ensures that the routes can be accessed without authentication
 
 jest.mock("axios");
 

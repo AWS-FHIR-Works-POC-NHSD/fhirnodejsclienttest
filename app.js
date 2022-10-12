@@ -89,11 +89,11 @@ passport.deserializeUser((obj, next) => {
 
 
 app.use('/authorization-code/callback',
-  passport.authenticate('oidc', { failureRedirect: '/error' }),
-  (req, res) => {
-    console.log("req.user=" + req.user);
-    res.redirect('/');
-  }
+    passport.authenticate('oidc', { failureRedirect: '/error' }),
+    (req, res) => {
+      console.log("req.user=" + req.user);
+      res.redirect('/');
+    }
 );
 
 app.post('/logout', function(req, res, next) {
@@ -166,16 +166,21 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 
 let token = '';
 
-axios
-  .post(TOKEN_ENDPOINT, qs.stringify(postData))
-  .then(response => {
-    //console.log(response.data);
-    //console.log("Bearer token is this :" + response.data.access_token );
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
-  })
-  .catch(error => {
-    console.log(error);
-  });
+try {
+  axios
+      .post(TOKEN_ENDPOINT, qs.stringify(postData))
+      .then(response => {
+        //console.log(response.data);
+        //console.log("Bearer token is this :" + response.data.access_token );
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+} catch(e) {
+  console.log('Error raised when fetching bearer token');
+  console.log(e);
+}
 
 module.exports = app;
 
