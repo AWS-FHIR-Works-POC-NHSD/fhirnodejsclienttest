@@ -182,6 +182,49 @@ try {
   console.log(e);
 }
 
+// Get list of vaccination bodysite codes from
+// SCTID: 1127941000000100 Vaccine body site of administration simple reference set (foundation metadata concept) 
+
+    axios.get('https://termbrowser.nhs.uk/sct-browser-api/snomed/uk-edition/v20220928/concepts/1127941000000100/members')
+        .then(function (response) {
+            // handle success
+            //console.log(response.data);
+            numberOfResources = response.data.members.length;
+            console.log("Vaccine body site refset numberOfResources : " + numberOfResources);
+            
+            global.bodysiteCounter = 0;
+            global.id = [];
+            global.bodysiteCode = [];
+
+            for (i = 0; i < numberOfResources; i++) { 
+
+                    console.log("i : " + i);
+
+                        global.bodysiteCounter++;
+
+                        console.log("i is " + i);
+                        
+                        for (i = 0; i < numberOfResources; i++) { 
+
+                          //global.id[i] = response.data.members[i]._id;
+                          console.log( JSON.stringify( response.data.members[i] ) );
+
+                          console.log("bodysiteCounter " + i);
+                          //global.bodysiteCode[i] = response.data.members[i].conceptDd;
+                          //console.log("bodysiteCode " + global.bodysiteCode[i]);
+                      }
+
+                }
+
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            // always executed
+        });
+
 module.exports = app;
 
 //app.listen(port, () => console.log("Server listening on port " + port ));
