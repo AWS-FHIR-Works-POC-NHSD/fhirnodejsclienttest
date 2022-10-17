@@ -31,6 +31,8 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
             var identifierSystem = "";
             var fulldate = "";
             var date = "";
+            var bodysiteCode = "";
+            var bodysiteDisplay = "";
             var recorded = "";
             var nhsNumber = "";
             var vaccineProcedureCode = "";
@@ -47,6 +49,8 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
             identifierSystem = response.data.identifier[0].system;
             fulldate = response.data.occurrenceDateTime;
             date = fulldate.substring(0, 10);
+            bodysiteCode = response.data.site.coding[0].code;
+            bodysiteDisplay = response.data.site.coding[0].display;
             recorded = response.data.recorded;
             //nhsNumber                   = response.data.patient.identifier.value;
             nhsNumber = response.data.patient.reference;
@@ -65,6 +69,8 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
                 identifierSystem: identifierSystem,
                 nhsNumber: nhsNumber,
                 date: date,
+                bodysiteCode: bodysiteCode,
+                bodysiteDisplay: bodysiteDisplay,
                 recorded: recorded,
                 vaccineProcedureCode: vaccineProcedureCode,
                 vaccineProcedureDescription: vaccineProcedureDescription,

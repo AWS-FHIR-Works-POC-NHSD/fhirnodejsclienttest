@@ -18,14 +18,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 router.get('/', function(req, res, next) {
 
 console.log("Inside Running update.js");
-console.log("REQ body:" + req.body)
 
     if ( process.env.AUTHENTICATE == 'false' || req.isAuthenticated() ) {
-
-        /*
-        var POCidentifier = req.query.POCidentifier;
-        console.log("The Immunization_Id is " + POCidentifier );
-        */
 
         var id = req.query.id;
         console.log("The FHIR resource id " + id);
@@ -42,45 +36,18 @@ console.log("REQ body:" + req.body)
                 var fulldate = response.data.occurrenceDateTime;
                 var date = fulldate.substring(0, 10);
 
-                var vaccineProcedureCode = response.data.extension[0].valueCodeableConcept.coding[0].code;
+                var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
                 var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
-                var vaccineProductCode = response.data.vaccineCode.coding[0].code;
-                var vaccineProductDescription = response.data.vaccineCode.coding[0].display;
-                var batchNumber = response.data.lotNumber;
-                var expirationDate = response.data.expirationDate;
+                var vaccineProductCode          = response.data.vaccineCode.coding[0].code;
+                var vaccineProductDescription   = response.data.vaccineCode.coding[0].display;
+                var bodysite                    = response.data.bodysite;
+                var batchNumber                 = response.data.lotNumber;
+                var expirationDate              = response.data.expirationDate;
                 var vaccineProcedure = "";
                 var vaccineProduct = "";
                 /*
                 var reason                      = response.data.reasonCode.coding[0].display;
                 */
-
-                if (vaccineProcedureCode == "1324681000000101") {
-                    vaccineProcedure = "dose1"
-                }
-                if (vaccineProcedureCode == "1324691000000104") {
-                    vaccineProcedure = "dose2"
-                }
-
-                if (vaccineProductCode == "39114911000001105") {
-                    vaccineProduct = "astrazeneca"
-                }
-                if (vaccineProductCode == "39115611000001103") {
-                    vaccineProduct = "pfizer"
-                }
-                if (vaccineProductCode == "39326911000001101") {
-                    vaccineProduct = "moderna"
-                }
-
-
-                /*
-                    console.log("Update.js values before render");
-                    console.log("id: " + id );
-                    console.log("POCidentifier: " + POCidentifier );
-                    console.log("vaccineProcedure: " + vaccineProcedure );
-                    console.log("fulldate: " + fulldate );
-                    console.log("date: " + date );
-                    */
-
 
                 res.render("update", {
                     id: id,
@@ -89,6 +56,7 @@ console.log("REQ body:" + req.body)
                     date: date,
                     vaccineProcedure: vaccineProcedure,
                     vaccineProduct: vaccineProduct,
+                    bodysite: bodysite,
                     batchNumber: batchNumber,
                     expirationDate: expirationDate,
                     user: req.user,
