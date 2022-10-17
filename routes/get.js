@@ -10,15 +10,18 @@ router.get('/', function(req, res, next) {
     var identifierSystem = "";
     var nhsNumber = "";
     var vaccineProcedureCode = "";
-    var vaccineProcedureDescription = "";
+    var vaccineProcedureDisplay = "";
     var vaccineProductCode          = "";
-    var vaccineProductDescription   = "";
+    var vaccineProductDisplay   = "";
     var date                        = "";
+    var bodysite                    = "";
+    var bodysiteCode                = "";
+    var bodysiteDisplay             = "";
     var recorded                    = "";
     var batchNumber                 = "";
     var expirationDate              = "";
     var reasonCode                  = "";
-    var reasonDescription           = "";
+    var reasonDisplay           = "";
 
     if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
         res.render("get", {
@@ -27,15 +30,18 @@ router.get('/', function(req, res, next) {
             identifierSystem: identifierSystem,
             nhsNumber: nhsNumber,
             date: date,
+            bodysite: bodysite,
+            bodysiteCode: bodysiteCode,
+            bodysiteDisplay: bodysiteDisplay,
             recorded: recorded,
             vaccineProcedureCode: vaccineProcedureCode,
-            vaccineProcedureDescription: vaccineProcedureDescription,
+            vaccineProcedureDisplay: vaccineProcedureDisplay,
             vaccineProductCode: vaccineProductCode,
-            vaccineProductDescription: vaccineProductDescription,
+            vaccineProductDisplay: vaccineProductDisplay,
             batchNumber: batchNumber,
             expirationDate: expirationDate,
             reasonCode: reasonCode,
-            reasonDescription: reasonDescription,
+            reasonDisplay: reasonDisplay,
             authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
             user: req.user,
             username: req.user ? req.user.username : ""
