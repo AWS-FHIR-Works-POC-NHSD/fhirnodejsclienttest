@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
          axios.get(URL)
             .then(function (response) {
                 // handle success
-                console.log(response.data);
+                //console.log(response.data);
                 console.log("success");
 
                 var numberOfResources = 0;
@@ -72,7 +72,7 @@ router.get('/', function(req, res, next) {
                         global.immCounter++;
 
                         console.log("i is " + i);
-                        console.log( JSON.stringify( response.data.entry[i] ) );
+                        //console.log( JSON.stringify( response.data.entry[i] ) );
 
                         global.id[i] = response.data.entry[i].resource.id;
                         //global.nhsnumber[i] = response.data.entry[i].resource.patient.identifier.value;

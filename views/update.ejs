@@ -35,7 +35,7 @@
 
                         <div class="form-group ">
                             <label class="control-label requiredField" for="id">
-                                FHIR Resource id
+                                Vaccination (Immunisation) FHIR Server Resource id
                             </label>
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -44,23 +44,17 @@
                                 </div>
                                 <input class="form-control" id="id" name="id" value="<%= id %>" readonly type="text" />
                             </div>
-
-                            <div class="form-group ">
-                                <label class="control-label requiredField" for="pocidentifier">
-                                    POC identifier
-                                    <span class="asteriskField">
-                                        *
-                                    </span>
-                                </label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user-md">
-                                        </i>
-                                    </div>
-                                    <input class="form-control" id="pocidentifier" name="pocidentifier"
-                                        value="<%= POCidentifier %>" type="text" />
+                            <label class="control-label requiredField" for="pocidentifier">
+                                Local vaccination identifier
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user-md">
+                                    </i>
                                 </div>
-                                <div class="form-group ">
+                                <input class="form-control" id="pocidentifier" name="pocidentifier" value="<%= pocidentifier %>" readonly type="text" />
+                            </div>
+                            <div class="form-group ">
                                     <label class="control-label requiredField" for="nhsnumber">
                                         NHS Number
                                         <span class="asteriskField">
@@ -74,7 +68,6 @@
                                         </div>
                                         <input class="form-control" id="nhsnumber" name="nhsnumber"
                                             value="<%= nhsNumber %>" type="text" />
-                                    </div>
                                 </div>
                                 <%- include('partials/vaccinationprocedure.ejs') %>
                                 <%- include('partials/vaccineproduct.ejs') %>
@@ -89,6 +82,18 @@
                                         </div>
                                         <input class="form-control" id="date" name="date" value="<%= date %>"
                                             type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label " for="date">
+                                        Recorded Date (original)
+                                    </label>
+                                    <div class="input-group">
+                                      <div class="input-group-addon">
+                                        <i class="fa fa-user-md">
+                                        </i>
+                                      </div>
+                                      <input class="form-control" id="recorded" name="recorded" value="<%= recorded %>" readonly type="text" />
                                     </div>
                                 </div>
                                 <%- include('partials/bodysite.ejs') %>
@@ -115,7 +120,7 @@
                                             value="<%= expirationDate %>" type="text" />
                                     </div>
                                 </div>
-
+                                <%- include('partials/reason.ejs') %>          
                                 <div class="form-group">
                                     <div>
                                         <button class="btn btn-info" name="submit" type="submit">

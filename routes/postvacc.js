@@ -23,7 +23,7 @@ router.post('/', function(req, res, next) {
 
   if ( process.env.AUTHENTICATE == 'false' || req.isAuthenticated() ) {
 
-      //var POCidentifier    = req.body.pocidentifier
+      var siteIdentifier   = req.body.siteidentifier
       var nhsNumber        = req.body.nhsnumber;
       var vaccineProcedure = req.body.vaccprocedure;
       var vaccineProduct   = req.body.vaccine;

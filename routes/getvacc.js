@@ -36,13 +36,13 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
             var recorded = "";
             var nhsNumber = "";
             var vaccineProcedureCode = "";
-            var vaccineProcedureDescription = "";
+            var vaccineProcedureDisplay = "";
             var vaccineProductCode = "";
-            var vaccineProductDescription = "";
+            var vaccineProductDisplay = "";
             var batchNumber = "";
             var expirationDate = "";
             var reasonCode = "";
-            var reasonDescription = "";
+            var reasonDisplay = "";
 
             id = response.data.id;
             identifier = response.data.identifier[0].value;
@@ -55,13 +55,13 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
             //nhsNumber                   = response.data.patient.identifier.value;
             nhsNumber = response.data.patient.reference;
             vaccineProcedureCode = response.data.extension[0].valueCodeableConcept.coding[0].code;
-            vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
+            vaccineProcedureDisplay = response.data.extension[0].valueCodeableConcept.coding[0].display;
             vaccineProductCode = response.data.vaccineCode.coding[0].code;
-            vaccineProductDescription = response.data.vaccineCode.coding[0].display;
+            vaccineProductDisplay = response.data.vaccineCode.coding[0].display;
             batchNumber = response.data.lotNumber;
             expirationDate = response.data.expirationDate;
             reasonCode = response.data.reasonCode[0].coding[0].code;
-            reasonDescription = response.data.reasonCode[0].coding[0].display;
+            reasonDisplay = response.data.reasonCode[0].coding[0].display;
 
             res.render("get", {
                 id: id,
@@ -73,13 +73,13 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
                 bodysiteDisplay: bodysiteDisplay,
                 recorded: recorded,
                 vaccineProcedureCode: vaccineProcedureCode,
-                vaccineProcedureDescription: vaccineProcedureDescription,
+                vaccineProcedureDisplay: vaccineProcedureDisplay,
                 vaccineProductCode: vaccineProductCode,
-                vaccineProductDescription: vaccineProductDescription,
+                vaccineProductDisplay: vaccineProductDisplay,
                 batchNumber: batchNumber,
                 expirationDate: expirationDate,
                 reasonCode: reasonCode,
-                reasonDescription: reasonDescription,
+                reasonDisplay: reasonDisplay,
                 user: req.user,
                 authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
                 username: req.user ? req.user.username : ""

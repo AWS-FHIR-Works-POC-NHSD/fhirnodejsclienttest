@@ -28,10 +28,12 @@ console.log("Inside Running update.js");
             .then(function (response) {
                 // handle success
                 //console.log(response);
+                console.log("Inside update.js get Immunization call");
 
                 var id = response.data.id;
                 var nhsNumber = response.data.patient.identifier.value;
-                var POCidentifier = response.data.identifier[0].value;
+                var pocidentifier = response.data.identifier[0].value;
+                console.log("pocidentifier = " + pocidentifier);
 
                 var fulldate = response.data.occurrenceDateTime;
                 var date = fulldate.substring(0, 10);
@@ -45,13 +47,11 @@ console.log("Inside Running update.js");
                 var expirationDate              = response.data.expirationDate;
                 var vaccineProcedure = "";
                 var vaccineProduct = "";
-                /*
-                var reason                      = response.data.reasonCode.coding[0].display;
-                */
+                //var reason                      = response.data.reasonCode.coding[0].display;
 
                 res.render("update", {
                     id: id,
-                    POCidentifier: POCidentifier,
+                    pocidentifier: pocidentifier,
                     nhsNumber: nhsNumber,
                     date: date,
                     vaccineProcedure: vaccineProcedure,
@@ -61,10 +61,8 @@ console.log("Inside Running update.js");
                     expirationDate: expirationDate,
                     user: req.user,
                     authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
-                    username: req.user ? req.user.username : ""
-                    /* ,
-                    reason : reason
-                    */
+                    username: req.user ? req.user.username : "" /*,
+                    reason : reason */
                 })
             })
             .catch(function (error) {

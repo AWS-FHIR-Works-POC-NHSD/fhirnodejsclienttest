@@ -44,8 +44,8 @@ router.get('/', function(req, res, next) {
             reasonDisplay: reasonDisplay,
             authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
             user: req.user,
-            username: req.user ? req.user.username : ""
-        });
+            username: req.user ? req.user.username : "" 
+        }); 
     } else {
         res.redirect('/login');
     }

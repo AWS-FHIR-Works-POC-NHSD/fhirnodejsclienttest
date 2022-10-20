@@ -36,6 +36,8 @@ router.post('/', function(req, res, next) {
       var bodysite = req.body.bodysite;
       var expirationDate = req.body.expirydate;
       var lotNumber = req.body.batchnumber;
+      var reason = req.body.reason;
+      var recordedDate = req.body.recorded;
 
       /* vaccination procedures */
 
@@ -144,6 +146,21 @@ router.post('/', function(req, res, next) {
           bodysiteDisplay = "Oral cavity structure (body structure)"
       }
 
+      /* reason aka indication, for vaccination */
+
+      if (reason == "diseaseoutbreak") {
+          reasonCode = "443684005";
+          reasonDescription = "Disease outbreak";
+      }
+      if (reason == "pregnant") {
+          reasonCode = "77386006";
+          reasonDescription = "Pregnant";
+      }
+      if (reason == "chocolate") {
+          reasonCode = "227610000";
+          reasonDescription = "Milk chocolate";
+      }
+
 //var uuid = uuidv4();
 
       console.log("id " + id);
@@ -200,6 +217,7 @@ router.post('/', function(req, res, next) {
                   }
               },
               "occurrenceDateTime": date,
+              "recorded": recordedDate,
               "primarySource": true,
               "lotNumber": lotNumber,
               "expirationDate": expirationDate,
@@ -265,8 +283,8 @@ router.post('/', function(req, res, next) {
                       "coding": [
                           {
                               "system": "http://snomed.info/sct",
-                              "code": "443684005",
-                              "display": "Disease outbreak (event)"
+                              "code": reasonCode,
+                              "display": reasonDescription
                           }
                       ]
                   }
