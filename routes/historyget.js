@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
          axios.get(URL)
             .then(function (response) {
                 // handle success
-                console.log(response.data);
+                //console.log(response.data);
                 console.log("success");
 
                 var numberOfResources = 0;
@@ -53,6 +53,8 @@ router.get('/', function(req, res, next) {
                 global.vaccineCodeSNOMED = [];
                 global.vaccineCodeDisplay = [];
                 global.occurrenceDateTime = [];
+                global.bodysiteCode = [];
+                global.bodysiteDisplay = [];
                 global.recorded = [];
                 global.primarySource = [];
                 global.reasonCode = [];
@@ -70,7 +72,7 @@ router.get('/', function(req, res, next) {
                         global.immCounter++;
 
                         console.log("i is " + i);
-                        console.log( JSON.stringify( response.data.entry[i] ) );
+                        //console.log( JSON.stringify( response.data.entry[i] ) );
 
                         global.id[i] = response.data.entry[i].resource.id;
                         //global.nhsnumber[i] = response.data.entry[i].resource.patient.identifier.value;
@@ -83,6 +85,8 @@ router.get('/', function(req, res, next) {
                         global.vaccineCodeSNOMED[i] = response.data.entry[i].resource.vaccineCode.coding[0].code;
                         global.vaccineCodeDisplay[i] = response.data.entry[i].resource.vaccineCode.coding[0].display;
                         global.occurrenceDateTime[i] = response.data.entry[i].resource.occurrenceDateTime;
+                        global.bodysiteCode[i] = response.data.entry[i].resource.site.coding[0].code;
+                        global.bodysiteDisplay[i] = response.data.entry[i].resource.site.coding[0].display;
                         global.recorded[i] = response.data.entry[i].resource.recorded;
                         global.primarySource[i] = response.data.entry[i].resource.primarySource;
                         global.reasonCode[i] = response.data.entry[i].resource.reasonCode[0].coding[0].code;

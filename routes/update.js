@@ -18,14 +18,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 router.get('/', function(req, res, next) {
 
 console.log("Inside Running update.js");
-console.log("REQ body:" + req.body)
 
     if ( process.env.AUTHENTICATE == 'false' || req.isAuthenticated() ) {
-
-        /*
-        var POCidentifier = req.query.POCidentifier;
-        console.log("The Immunization_Id is " + POCidentifier );
-        */
 
         var id = req.query.id;
         console.log("The FHIR resource id " + id);
@@ -34,69 +28,43 @@ console.log("REQ body:" + req.body)
             .then(function (response) {
                 // handle success
                 //console.log(response);
+                console.log("Inside update.js get Immunization call");
 
                 var id = response.data.id;
                 var nhsNumber = response.data.patient.identifier.value;
-                var POCidentifier = response.data.identifier[0].value;
+                var pocidentifier = response.data.identifier[0].value;
+                console.log("pocidentifier = " + pocidentifier);
 
                 var fulldate = response.data.occurrenceDateTime;
                 var date = fulldate.substring(0, 10);
 
-                var vaccineProcedureCode = response.data.extension[0].valueCodeableConcept.coding[0].code;
+                var vaccineProcedureCode        = response.data.extension[0].valueCodeableConcept.coding[0].code;
                 var vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
-                var vaccineProductCode = response.data.vaccineCode.coding[0].code;
-                var vaccineProductDescription = response.data.vaccineCode.coding[0].display;
-                var batchNumber = response.data.lotNumber;
-                var expirationDate = response.data.expirationDate;
-                var vaccineProcedure = "";
-                var vaccineProduct = "";
-                /*
-                var reason                      = response.data.reasonCode.coding[0].display;
-                */
-
-                if (vaccineProcedureCode == "1324681000000101") {
-                    vaccineProcedure = "dose1"
-                }
-                if (vaccineProcedureCode == "1324691000000104") {
-                    vaccineProcedure = "dose2"
-                }
-
-                if (vaccineProductCode == "39114911000001105") {
-                    vaccineProduct = "astrazeneca"
-                }
-                if (vaccineProductCode == "39115611000001103") {
-                    vaccineProduct = "pfizer"
-                }
-                if (vaccineProductCode == "39326911000001101") {
-                    vaccineProduct = "moderna"
-                }
-
-
-                /*
-                    console.log("Update.js values before render");
-                    console.log("id: " + id );
-                    console.log("POCidentifier: " + POCidentifier );
-                    console.log("vaccineProcedure: " + vaccineProcedure );
-                    console.log("fulldate: " + fulldate );
-                    console.log("date: " + date );
-                    */
-
+                var vaccineProductCode          = response.data.vaccineCode.coding[0].code;
+                var vaccineProductDescription   = response.data.vaccineCode.coding[0].display;
+                var bodysite                    = response.data.bodysite;
+                var batchNumber                 = response.data.lotNumber;
+                var expirationDate              = response.data.expirationDate;
+                var vaccineProcedure            = "";
+                var vaccineProduct              = "";
+                var recorded                    = response.data.recorded;
+                //var reason                      = response.data.reasonCode.coding[0].display;
 
                 res.render("update", {
                     id: id,
-                    POCidentifier: POCidentifier,
+                    pocidentifier: pocidentifier,
                     nhsNumber: nhsNumber,
                     date: date,
                     vaccineProcedure: vaccineProcedure,
                     vaccineProduct: vaccineProduct,
+                    bodysite: bodysite,
                     batchNumber: batchNumber,
                     expirationDate: expirationDate,
                     user: req.user,
                     authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
-                    username: req.user ? req.user.username : ""
-                    /* ,
-                    reason : reason
-                    */
+                    username: req.user ? req.user.username : "",
+                    recorded: recorded /*,
+                    reason : reason */
                 })
             })
             .catch(function (error) {

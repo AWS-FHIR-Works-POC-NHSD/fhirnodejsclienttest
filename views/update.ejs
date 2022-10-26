@@ -35,7 +35,7 @@
 
                         <div class="form-group ">
                             <label class="control-label requiredField" for="id">
-                                FHIR Resource id
+                                Vaccination (Immunisation) FHIR Server Resource id
                             </label>
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -44,23 +44,17 @@
                                 </div>
                                 <input class="form-control" id="id" name="id" value="<%= id %>" readonly type="text" />
                             </div>
-
-                            <div class="form-group ">
-                                <label class="control-label requiredField" for="pocidentifier">
-                                    POC identifier
-                                    <span class="asteriskField">
-                                        *
-                                    </span>
-                                </label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-user-md">
-                                        </i>
-                                    </div>
-                                    <input class="form-control" id="pocidentifier" name="pocidentifier"
-                                        value="<%= POCidentifier %>" type="text" />
+                            <label class="control-label requiredField" for="pocidentifier">
+                                Local vaccination identifier
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-user-md">
+                                    </i>
                                 </div>
-                                <div class="form-group ">
+                                <input class="form-control" id="pocidentifier" name="pocidentifier" value="<%= pocidentifier %>" readonly type="text" />
+                            </div>
+                            <div class="form-group ">
                                     <label class="control-label requiredField" for="nhsnumber">
                                         NHS Number
                                         <span class="asteriskField">
@@ -74,73 +68,9 @@
                                         </div>
                                         <input class="form-control" id="nhsnumber" name="nhsnumber"
                                             value="<%= nhsNumber %>" type="text" />
-                                    </div>
                                 </div>
-
-                                <div class="form-group ">
-                                    <label class="control-label " for="vaccprocedure">
-                                        Vaccination Procedure
-                                    </label>
-                                    <select class="select form-control" id="vaccprocedure" name="vaccprocedure"
-                                        value="<%= vaccineProcedure %>" />
-
-                                    <option value="polioboostercampaign">
-                                        Polio Booster (campaign)
-                                    </option>
-                                    <option value="covdose1">
-                                        Covid Vaccination Dose 1
-                                    </option>
-                                    <option value="covdose2">
-                                        Covid Vaccination Dose 2
-                                    </option>
-                                    <option value="covbooster">
-                                        Covid Vaccination Booster
-                                    </option>
-                                    <option value="hpvdose">
-                                        HPV Vaccination Dose
-                                    </option>
-                                    </select>
-                                </div>
-                                <div class="form-group ">
-                                    <label class="control-label " for="vaccine">
-                                        Vaccine Product
-                                    </label>
-                                    <select class="select form-control" id="vaccine" name="vaccine" />
-                                    <option value="infanrixhexa">
-                                        GlaxoSmithKline Infanrix Hexa
-                                    </option>
-                                    <option value="vaxelis">
-                                        Sanofi Vaxelis
-                                    </option>
-                                    <option value="boostrixipv">
-                                        GlaxoSmithKline Boostrix-IPV
-                                    </option>
-                                    <option value="revaxis">
-                                        Sanofi Pasteur Revaxis
-                                    </option>
-                                    <option value="comirnaty30">
-                                        Pfizer Comirnaty 30
-                                    </option>
-                                    <option value="comirnaty10">
-                                        Pfizer Comirnaty 10 (Children 5-11 yr)
-                                    </option>
-                                    <option value="comirnaty0O">
-                                        Pfizer Comirnaty Bivalent Original/Omicron
-                                    </option>
-                                    <option value="spikevax">
-                                        Moderna Spikevax
-                                    </option>
-                                    <option value="modernabspikevax0O">
-                                        Moderna Bivalent Spikevax 0 (Zero)/O (Omicron)
-                                    </option>
-                                    <option value="vaxzevria">
-                                        AstraZeneca Vaxzevria
-                                    </option>
-                                    <option value="gardasil">
-                                        Gardasil (HPV)
-                                    </option>
-                                    </select>
-                                </div>
+                                <%- include('partials/vaccinationprocedure.ejs') %>
+                                <%- include('partials/vaccineproduct.ejs') %>
                                 <div class="form-group ">
                                     <label class="control-label " for="date">
                                         Date of vaccination
@@ -154,6 +84,19 @@
                                             type="text" />
                                     </div>
                                 </div>
+                                <div class="form-group ">
+                                    <label class="control-label " for="date">
+                                        Recorded Date (original)
+                                    </label>
+                                    <div class="input-group">
+                                      <div class="input-group-addon">
+                                        <i class="fa fa-user-md">
+                                        </i>
+                                      </div>
+                                      <input class="form-control" id="recorded" name="recorded" value="<%= recorded %>" readonly type="text" />
+                                    </div>
+                                </div>
+                                <%- include('partials/bodysite.ejs') %>
                                 <div class="form-group ">
                                     <label class="control-label requiredField" for="batchnumber">
                                         Batch number
@@ -177,7 +120,7 @@
                                             value="<%= expirationDate %>" type="text" />
                                     </div>
                                 </div>
-
+                                <%- include('partials/reason.ejs') %>          
                                 <div class="form-group">
                                     <div>
                                         <button class="btn btn-info" name="submit" type="submit">

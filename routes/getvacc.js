@@ -31,33 +31,37 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
             var identifierSystem = "";
             var fulldate = "";
             var date = "";
+            var bodysiteCode = "";
+            var bodysiteDisplay = "";
             var recorded = "";
             var nhsNumber = "";
             var vaccineProcedureCode = "";
-            var vaccineProcedureDescription = "";
+            var vaccineProcedureDisplay = "";
             var vaccineProductCode = "";
-            var vaccineProductDescription = "";
+            var vaccineProductDisplay = "";
             var batchNumber = "";
             var expirationDate = "";
             var reasonCode = "";
-            var reasonDescription = "";
+            var reasonDisplay = "";
 
             id = response.data.id;
             identifier = response.data.identifier[0].value;
             identifierSystem = response.data.identifier[0].system;
             fulldate = response.data.occurrenceDateTime;
             date = fulldate.substring(0, 10);
+            bodysiteCode = response.data.site.coding[0].code;
+            bodysiteDisplay = response.data.site.coding[0].display;
             recorded = response.data.recorded;
             //nhsNumber                   = response.data.patient.identifier.value;
             nhsNumber = response.data.patient.reference;
             vaccineProcedureCode = response.data.extension[0].valueCodeableConcept.coding[0].code;
-            vaccineProcedureDescription = response.data.extension[0].valueCodeableConcept.coding[0].display;
+            vaccineProcedureDisplay = response.data.extension[0].valueCodeableConcept.coding[0].display;
             vaccineProductCode = response.data.vaccineCode.coding[0].code;
-            vaccineProductDescription = response.data.vaccineCode.coding[0].display;
+            vaccineProductDisplay = response.data.vaccineCode.coding[0].display;
             batchNumber = response.data.lotNumber;
             expirationDate = response.data.expirationDate;
             reasonCode = response.data.reasonCode[0].coding[0].code;
-            reasonDescription = response.data.reasonCode[0].coding[0].display;
+            reasonDisplay = response.data.reasonCode[0].coding[0].display;
 
             res.render("get", {
                 id: id,
@@ -65,15 +69,17 @@ if ( process.env.AUTHENTICATE == "false" || req.isAuthenticated() ) {
                 identifierSystem: identifierSystem,
                 nhsNumber: nhsNumber,
                 date: date,
+                bodysiteCode: bodysiteCode,
+                bodysiteDisplay: bodysiteDisplay,
                 recorded: recorded,
                 vaccineProcedureCode: vaccineProcedureCode,
-                vaccineProcedureDescription: vaccineProcedureDescription,
+                vaccineProcedureDisplay: vaccineProcedureDisplay,
                 vaccineProductCode: vaccineProductCode,
-                vaccineProductDescription: vaccineProductDescription,
+                vaccineProductDisplay: vaccineProductDisplay,
                 batchNumber: batchNumber,
                 expirationDate: expirationDate,
                 reasonCode: reasonCode,
-                reasonDescription: reasonDescription,
+                reasonDisplay: reasonDisplay,
                 user: req.user,
                 authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
                 username: req.user ? req.user.username : ""

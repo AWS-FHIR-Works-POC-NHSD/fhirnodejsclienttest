@@ -33,8 +33,11 @@ router.post('/', function(req, res, next) {
       var nhsNumber = req.body.nhsnumber;
       var vaccineProcedure = req.body.vaccprocedure;
       var date = req.body.date + "T00:00:00.000+00:00";
+      var bodysite = req.body.bodysite;
       var expirationDate = req.body.expirydate;
       var lotNumber = req.body.batchnumber;
+      var reason = req.body.reason;
+      var recordedDate = req.body.recorded;
 
       /* vaccination procedures */
 
@@ -108,12 +111,64 @@ router.post('/', function(req, res, next) {
           vaccineProductDescription = "Gardasil vaccine suspension for injection 0.5ml pre-filled syringes (Merck Sharp & Dohme (UK) Ltd)";
       }
 
+      /* body site of vaccination */
+
+      if (bodysite == "rightupperarm" ){
+          bodysiteCode = "368209003";
+          bodysiteDisplay = "Right upper arm structure (body structure)"
+      }
+      if (bodysite == "leftupperarm" ){
+          bodysiteCode = "368208006";
+          bodysiteDisplay = "Left upper arm structure (body structure)"
+      }
+      if (bodysite == "leftthigh" ){
+          bodysiteCode = "61396006";
+          bodysiteDisplay = "Structure of left thigh (body structure)"
+      }
+      if (bodysite == "rightthigh" ){
+          bodysiteCode = "11207009";
+          bodysiteDisplay = "Structure of right thigh (body structure)"
+      }
+      if (bodysite == "nasalcavity" ){
+          bodysiteCode = "279549004";
+          bodysiteDisplay = "Nasal cavity structure (body structure)"
+      }
+      if (bodysite == "leftbuttock" ){
+          bodysiteCode = "723979003";
+          bodysiteDisplay = "Structure of left buttock (body structure)"
+      }
+      if (bodysite == "rightbuttock" ){
+          bodysiteCode = "723980000";
+          bodysiteDisplay = "Structure of right buttock (body structure)"
+      }
+      if (bodysite == "oralcavity" ){
+          bodysiteCode = "74262004";
+          bodysiteDisplay = "Oral cavity structure (body structure)"
+      }
+
+      /* reason aka indication, for vaccination */
+
+      if (reason == "diseaseoutbreak") {
+          reasonCode = "443684005";
+          reasonDescription = "Disease outbreak";
+      }
+      if (reason == "pregnant") {
+          reasonCode = "77386006";
+          reasonDescription = "Pregnant";
+      }
+      if (reason == "chocolate") {
+          reasonCode = "227610000";
+          reasonDescription = "Milk chocolate";
+      }
+
 //var uuid = uuidv4();
 
       console.log("id " + id);
       console.log("vaccineProductCode " + vaccineProductCode);
       console.log("vaccineProductDescription " + vaccineProductDescription);
       console.log("POCidentifier " + POCidentifier);
+      console.log("bodysiteCode " + bodysiteCode);
+      console.log("bodysiteDisplay " + bodysiteDisplay);
       //console.log("identifier UUID " + uuid);
 
 
@@ -162,6 +217,7 @@ router.post('/', function(req, res, next) {
                   }
               },
               "occurrenceDateTime": date,
+              "recorded": recordedDate,
               "primarySource": true,
               "lotNumber": lotNumber,
               "expirationDate": expirationDate,
@@ -169,8 +225,8 @@ router.post('/', function(req, res, next) {
                   "coding": [
                       {
                           "system": "http://snomed.info/sct",
-                          "code": "368208006",
-                          "display": "Left upper arm structure (body structure)"
+                          "code": bodysiteCode,
+                          "display": bodysiteDisplay
                       }
                   ]
               },
@@ -227,8 +283,8 @@ router.post('/', function(req, res, next) {
                       "coding": [
                           {
                               "system": "http://snomed.info/sct",
-                              "code": "443684005",
-                              "display": "Disease outbreak (event)"
+                              "code": reasonCode,
+                              "display": reasonDescription
                           }
                       ]
                   }

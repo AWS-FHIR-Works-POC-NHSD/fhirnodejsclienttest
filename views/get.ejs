@@ -140,7 +140,7 @@
         <tr>
           <td>Vaccination Procedure Description</td>
           <td>
-            <%= vaccineProcedureDescription %>
+            <%= vaccineProcedureDisplay %>
           </td>
         </tr>
         <tr>
@@ -152,13 +152,25 @@
         <tr>
           <td>Vaccine Product Description</td>
           <td>
-            <%= vaccineProductDescription %>
+            <%= vaccineProductDisplay %>
           </td>
         </tr>
         <tr>
           <td>Date of vaccination (YYYY-MM-DD)</td>
           <td>
             <%= date %>
+          </td>
+        </tr>
+        <tr>
+          <td>Vaccination Body Site code (SNOMED)</td>
+          <td>
+            <%= bodysiteCode %>
+          </td>
+        </tr>
+        <tr>
+          <td>Vaccination Body site Description</td>
+          <td>
+            <%= bodysiteDisplay %>
           </td>
         </tr>
         <tr>
@@ -188,7 +200,7 @@
         <tr>
           <td>Reason Description</td>
           <td>
-            <%= reasonDescription %>
+            <%= reasonDisplay %>
           </td>
         </tr>
       </tbody>
