@@ -19,21 +19,23 @@ var authenticated = false;
 
 const methodOverride = require('method-override')
 
-var homeRouter = require('./routes/home');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var getPatientRouter = require('./routes/getpatient');
+var homeRouter               = require('./routes/home');
+var indexRouter              = require('./routes/index');
+var usersRouter              = require('./routes/users');
+var getPatientRouter         = require('./routes/getpatient');
 var getPatientRetrieveRouter = require('./routes/patientretrieve');
-var getRouter = require('./routes/get');
-var getvaccRouter = require('./routes/getvacc');
-var postRouter = require('./routes/post');
-var postvaccRouter = require('./routes/postvacc');
-var updateRouter = require('./routes/update');
-var updatevaccRouter = require('./routes/updatevacc');
-var deleteRouter = require('./routes/delete');
-var deletevaccRouter = require('./routes/deletevacc');
-var historyRouter = require('./routes/history');
-var historyretrievedRouter = require('./routes/historyget');
+var getRouter                = require('./routes/get');
+var getvaccRouter            = require('./routes/getvacc');
+var postRouter               = require('./routes/post');
+var postvaccRouter           = require('./routes/postvacc');
+var updateRouter             = require('./routes/update');
+var updatevaccRouter         = require('./routes/updatevacc');
+var deleteRouter             = require('./routes/delete');
+var deletevaccRouter         = require('./routes/deletevacc');
+var historyRouter            = require('./routes/history');
+var historyretrievedRouter   = require('./routes/historyget');
+var immrecommendRouter       = require('./routes/immrecommend');
+var immrecommendretrievedRouter  = require('./routes/immrecommendget');
 
 require('dotenv').config()
 
@@ -129,6 +131,8 @@ app.use('/delete', deleteRouter);
 app.use('/deletevacc', deletevaccRouter);
 app.use('/history', historyRouter);
 app.use('/historyget', historyretrievedRouter);
+app.use('/immrecommend', immrecommendRouter);
+app.use('/immrecommendget', immrecommendretrievedRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
