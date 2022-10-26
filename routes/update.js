@@ -45,8 +45,9 @@ console.log("Inside Running update.js");
                 var bodysite                    = response.data.bodysite;
                 var batchNumber                 = response.data.lotNumber;
                 var expirationDate              = response.data.expirationDate;
-                var vaccineProcedure = "";
-                var vaccineProduct = "";
+                var vaccineProcedure            = "";
+                var vaccineProduct              = "";
+                var recorded                    = response.data.recorded;
                 //var reason                      = response.data.reasonCode.coding[0].display;
 
                 res.render("update", {
@@ -61,7 +62,8 @@ console.log("Inside Running update.js");
                     expirationDate: expirationDate,
                     user: req.user,
                     authenticated: process.env.AUTHENTICATE == "false" || req.isAuthenticated(),
-                    username: req.user ? req.user.username : "" /*,
+                    username: req.user ? req.user.username : "",
+                    recorded: recorded /*,
                     reason : reason */
                 })
             })
