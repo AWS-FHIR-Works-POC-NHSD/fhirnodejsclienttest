@@ -1,0 +1,75 @@
+<%- include('partials/header'); -%>
+  <div class="container">
+    <H2>View Immunization Recommendation page</H2>
+
+    <P>Some retrieved Immunization Recommendation page
+
+  <div class="container">
+
+    <% for(var i=0; i < immrecCounter; i++) { %>
+      <P>
+
+      <H4> Immunization Recommendation number <%= [i+1] %>
+      </H4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>identifier (system)</td>
+            <td>
+              <%= identifierSystem[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>identifier (value)</td>
+            <td>
+              <%= identifierValue[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>date recommendation generated</td>
+            <td>
+              <%= date[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>vaccineCode (SNOMED)</td>
+            <td>
+              <%= vaccineCodeSNOMED[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>vaccineCode (Display)</td>
+            <td>
+              <%= vaccineCodeDisplay[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>diseaseCode (SNOMED)</td>
+            <td>
+              <%= diseaseCodeSNOMED[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td>diseaseCode (Display)</td>
+            <td>
+              <%= diseaseCodeDisplay[i] %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= dateCriterionDisplay[i] %></td>
+            <td>
+              <%= dateCriterionValue[i] %>
+            </td>
+          </tr>
+        </tbody>
+        <table>
+  </div>
+  <% } %>
+
+    <%- include('partials/footer'); -%>
