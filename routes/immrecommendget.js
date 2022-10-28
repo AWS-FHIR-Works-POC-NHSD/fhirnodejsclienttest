@@ -2,16 +2,6 @@ var express = require('express');
 var router = express.Router();
 const axios = require('axios');
 
-// Load environment variables from .env
-var dotenv = require('dotenv');
-dotenv.config();
-
-axios.defaults.baseURL = process.env.HOSTNAME;
-axios.defaults.headers.common['Authorization'] = process.env.AUTH_TOKEN;
-axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
-axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 /* GET ImmunizationRecommendation (retrieve) page. */
 
 router.get('/', function(req, res, next) {
@@ -27,8 +17,6 @@ router.get('/', function(req, res, next) {
         //global id = req.query.id;
         console.log("The Patient FHIR resource id " + id);
 
-        //console.log( "axios.defaults.baseURL" + axios.defaults.baseURL );
-        //console.log( "process.env.HOSTNAME" + process.env.HOSTNAME );
         var URL = '/ImmunizationRecommendation/?patient=' + process.env.PDSENDPOINT + '/Patient/' + id;
         console.log("Axios get call URL: " + URL);
 

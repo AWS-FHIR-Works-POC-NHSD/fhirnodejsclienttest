@@ -3,10 +3,6 @@ var router = express.Router();
 const axios = require('axios');
 var bodyParser = require("body-parser");
 
-// Load environment variables from .env
-var dotenv = require('dotenv');
-dotenv.config();
-
 /* GET VACC (retrieve) page. */
 router.get('/', function(req, res, next) {
 
@@ -21,8 +17,6 @@ router.get('/', function(req, res, next) {
         //global id = req.query.id;
         console.log("The Patient FHIR resource id " + id);
 
-        //console.log( "axios.defaults.baseURL" + axios.defaults.baseURL );
-        //console.log( "process.env.HOSTNAME" + process.env.HOSTNAME );
         var URL = '/Immunization/?patient=' + process.env.PDSENDPOINT + '/Patient/' + id;
         console.log("Axios get call URL: " + URL);
 

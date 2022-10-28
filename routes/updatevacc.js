@@ -8,18 +8,6 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 */
 
-require('dotenv').config()
-
-// Load environment variables from .env
-var dotenv = require('dotenv');
-dotenv.config();
-
-axios.defaults.baseURL = process.env.HOSTNAME;
-axios.defaults.headers.common['Authorization'] = process.env.AUTH_TOKEN;
-axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
-axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 /* UPDATE (put) vacc page. */
 router.post('/', function(req, res, next) {
 

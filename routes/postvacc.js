@@ -3,18 +3,6 @@ var router = express.Router();
 const axios = require('axios');
 const {v4 : uuidv4} = require('uuid')
 
-require('dotenv').config()
-
-// Load environment variables from .env
-var dotenv = require('dotenv');
-dotenv.config();
-
-axios.defaults.baseURL = process.env.HOSTNAME;
-axios.defaults.headers.common['Authorization'] = process.env.AUTH_TOKEN;
-axios.defaults.headers.common['x-api-key'] = process.env.XAPIKEY;
-axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 /* POST CREATE vacc page. */
 router.post('/', function(req, res, next) {
 

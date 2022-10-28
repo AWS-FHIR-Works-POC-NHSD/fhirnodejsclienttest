@@ -37,11 +37,12 @@ var historyretrievedRouter   = require('./routes/historyget');
 var immrecommendRouter       = require('./routes/immrecommend');
 var immrecommendretrievedRouter  = require('./routes/immrecommendget');
 
-require('dotenv').config()
-
 // Load environment variables from .env
+require('dotenv').config()
+/*
 var dotenv = require('dotenv');
 dotenv.config();
+*/
 
 // view engine setup
 //app.use(express.static("public"));
@@ -164,7 +165,8 @@ const postData = {
   resource: FHIR_SERVER
 };
 
-axios.defaults.baseURL = process.env.HOSTNAME;
+axios.defaults.baseURL = process.env.FHIRSERVER;
+//axios.defaults.baseURL = process.env.HOSTNAME;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.common['Accept'] = 'application/json';
 
