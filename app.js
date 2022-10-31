@@ -192,7 +192,6 @@ try {
         //azuretoken = response.data.access_token;
         //console.log("Inside block AZUREtoken = " + azuretoken );
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
-        //localStorage.setItem("token", "BKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSJ9.eyJhdWQiOiJodHRwczovL2ZoaXJwaXQuYXp1cmVoZWFsdGhjYXJlYXBpcy5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC81MGY2MDcxZi1iYmZlLTQwMWEtODgwMy02NzM3NDhlNjI5ZTIvIiwiaWF0IjoxNjY3MjE0NTUzLCJuYmYiOjE2NjcyMTQ1NTMsImV4cCI6MTY2NzIxODQ1MywiYWlvIjoiRTJaZ1lQaW1sZjBzcWZsYThvK2JGbytmaFlmZUJRQT0iLCJhcHBpZCI6IjVlYzFhYWRlLTRjZWEtNGNiMS1hOGY1LTkzZmMwZmRkZWQxMSIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzUwZjYwNzFmLWJiZmUtNDAxYS04ODAzLTY3Mzc0OGU2MjllMi8iLCJvaWQiOiJhNjMwNzgwNi05NTUxLTQzNTUtYjBmYy0zMTg2OWFiM2YzZmMiLCJyaCI6IjAuQVJBQUh3ZjJVUDY3R2tDSUEyYzNTT1lwNHRoNFowX3ZXdHhEb2Ytd2MzSkxsSlVRQUFBLiIsInN1YiI6ImE2MzA3ODA2LTk1NTEtNDM1NS1iMGZjLTMxODY5YWIzZjNmYyIsInRpZCI6IjUwZjYwNzFmLWJiZmUtNDAxYS04ODAzLTY3Mzc0OGU2MjllMiIsInV0aSI6Inp5S3J3N0t1NEUteXNxN2NGTjRIQUEiLCJ2ZXIiOiIxLjAifQ.RsCkM8svt4Vf3-N_RMb41oNGg1oarvVqO_9lPccgSnWCaUIAFUzP2lf-dyAFytLpyr4RK-ls8MMXNf-LUrDKXeK0F3FVhPLxksnUI7Wzq63iCq5GnjNyY7EVkiR8CxMkb_1hAIOmmTLS18wFPum2_0w71uaNoNlxYDNgghAtWLLYGluPg3jvXeqcF-x-huOYxFERXSn5zlZGV4S9WsCDIS2du2BqW1UrGCMo6vCKLT5GfD97010G2gE97emMjJ-TkW1lOhofH3UCoo7XqqLm2WMi7Tf3jW24tRqzrMGAdMCYxw2jpt1t6CX32ii_iK-n8HBhi9pFG54gMqL0ilh4MA");
         localStorage.setItem("token", response.data.access_token);
         
         //setLoading(false);
