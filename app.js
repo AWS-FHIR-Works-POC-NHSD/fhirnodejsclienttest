@@ -14,6 +14,13 @@ const passport = require('passport');
 const { Strategy } = require('passport-openidconnect');
 const axios = require('axios');
 const qs = require('qs');
+var jwt_decode = require('jwt-decode');
+
+// Set up some local storage to store access token
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
 
 var authenticated = false;
 
@@ -172,14 +179,25 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 
 let token = '';
 
+function getToken(){
+
+  //var  azuretoken = "";
+
 try {
   axios
       .post(TOKEN_ENDPOINT, qs.stringify(postData))
       .then(response => {
         //console.log(response.data);
         //console.log("Bearer token is this :" + response.data.access_token );
+        //azuretoken = response.data.access_token;
+        //console.log("Inside block AZUREtoken = " + azuretoken );
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
-      })
+        localStorage.setItem("token", response.data.access_token);
+        
+        //setLoading(false);
+
+      }        
+)
       .catch(error => {
         console.log(error);
       });
@@ -187,6 +205,40 @@ try {
   console.log('Error raised when fetching bearer token');
   console.log(e);
 }
+
+}
+
+getToken();
+
+var isExpiredToken = false;
+
+function checkToken(){
+
+  //console.log(localStorage.getItem('token'));
+  var decoded = jwt_decode(localStorage.getItem('token'));
+  //console.log( "DECODE !!!" + decoded.exp);
+
+  var dateNow = new Date();
+
+  if(decoded.exp < dateNow.getTime()/1000)
+
+  {
+         isExpiredToken = true;
+         console.log( "EXPIRED ! Calling getToken !" );
+         getToken();
+  }
+  else 
+  {
+         isExpiredToken = false;
+         console.log( "NOT expired !" );
+  }
+}
+
+function run() {
+  setInterval(checkToken, 5000);
+};
+
+run();
 
 // Get list of vaccination bodysite codes from
 // SCTID: 1127941000000100 Vaccine body site of administration simple reference set (foundation metadata concept) 
