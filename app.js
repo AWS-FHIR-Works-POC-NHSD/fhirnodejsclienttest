@@ -213,7 +213,7 @@ function checkToken(){
   else 
   {
          isExpiredToken = false;
-         console.log( "NOT expired !" );
+         console.log( "Token expires in %d seconds", Math.trunc(decoded.exp - dateNow.getTime()/1000));
   }
 }
 
