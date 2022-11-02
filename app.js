@@ -46,10 +46,6 @@ var immrecommendretrievedRouter  = require('./routes/immrecommendget');
 
 // Load environment variables from .env
 require('dotenv').config()
-/*
-var dotenv = require('dotenv');
-dotenv.config();
-*/
 
 // view engine setup
 //app.use(express.static("public"));
@@ -64,7 +60,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(methodOverride('_method'))
-
 
 app.use(session({
   secret: process.env.PASSPORTSECRET,
@@ -180,32 +175,22 @@ axios.defaults.headers.common['Accept'] = 'application/json';
 let token = '';
 
 function getToken(){
-
-  //var  azuretoken = "";
-
-try {
-  axios
-      .post(TOKEN_ENDPOINT, qs.stringify(postData))
-      .then(response => {
-        //console.log(response.data);
-        //console.log("Bearer token is this :" + response.data.access_token );
-        //azuretoken = response.data.access_token;
-        //console.log("Inside block AZUREtoken = " + azuretoken );
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
-        localStorage.setItem("token", response.data.access_token);
-        
-        //setLoading(false);
-
-      }        
-)
+  try {
+    axios
+        .post(TOKEN_ENDPOINT, qs.stringify(postData))
+        .then(response => {
+          //console.log(response.data);
+          //console.log("Bearer token is this :" + response.data.access_token );
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
+          localStorage.setItem("token", response.data.access_token);
+        })
       .catch(error => {
         console.log(error);
       });
-} catch(e) {
-  console.log('Error raised when fetching bearer token');
-  console.log(e);
-}
-
+  } catch(e) {
+    console.log('Error raised when fetching bearer token');
+    console.log(e);
+  }
 }
 
 getToken();
@@ -213,10 +198,8 @@ getToken();
 var isExpiredToken = false;
 
 function checkToken(){
-
   //console.log(localStorage.getItem('token'));
   var decoded = jwt_decode(localStorage.getItem('token'));
-  //console.log( "DECODE !!!" + decoded.exp);
 
   var dateNow = new Date();
 
@@ -287,5 +270,3 @@ run();
 */
 
 module.exports = app;
-
-//app.listen(port, () => console.log("Server listening on port " + port ));

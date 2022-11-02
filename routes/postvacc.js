@@ -32,6 +32,14 @@ router.post('/', function(req, res, next) {
 
       /* vaccination procedures */
 
+      if (vaccineProcedure == "mmrdose1") {
+          vaccineProcedureCode = "308081000000105";
+          vaccineProcedureDescription = "Measles mumps and rubella vaccination - first dose";
+      }
+      if (vaccineProcedure == "mmrdose2") {
+          vaccineProcedureCode = "170433008";
+          vaccineProcedureDescription = "Administration of second dose of measles and mumps and rubella vaccine";
+      }
       if (vaccineProcedure == "polioboostercampaign") {
           vaccineProcedureCode = "170356000";
           vaccineProcedureDescription = "Administration of booster dose of vaccine product containing only Human poliovirus antigen";
@@ -55,6 +63,14 @@ router.post('/', function(req, res, next) {
 
       /* vaccine types (products) */
 
+      if (vaccineProduct == "priorix") {
+          vaccineProductCode = "34925111000001104";
+          vaccineProductDescription = "Priorix vaccine powder and solvent for solution for injection 0.5ml pre-filled syringes (GlaxoSmithKline UK Ltd)";
+      }
+      if (vaccineProduct == "mmrvaxpro") {
+          vaccineProductCode = "13968211000001108";
+          vaccineProductDescription = "M-M-RVAXPRO vaccine powder and solvent for suspension for injection 0.5ml pre-filled syringes (Merck Sharp & Dohme (UK) Ltd)";
+      }
       if (vaccineProduct == "infanrixhexa") {
           vaccineProductCode = "34765811000001105";
           vaccineProductDescription = "Infanrix Hexa vaccine powder and suspension for suspension for injection 0.5ml pre-filled syringes (GlaxoSmithKline UK Ltd)";
