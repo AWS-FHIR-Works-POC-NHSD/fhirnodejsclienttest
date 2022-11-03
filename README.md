@@ -59,18 +59,20 @@ http://localhost:3000/
 1) Create branch in GitHub project
 
 2) Locally
-    > git pull
-    > git checkout <branch name>
-
+```
+    $git pull
+    $git checkout <branch name>
+```
 4) Make changes to code and other files as required
 
 5) Once you are happy with your changes and have run an manually tested them, npm test to run test pack before you commit
 
 6) Commit changes
-    > git add .
-    > git commit . -m <"commit message">
-    > git push
-
+```
+    $git add .
+    $git commit . -m <"commit message">
+    $git push
+```
 7) Return to GitHub and create Pull Request
 
 ## Docker
