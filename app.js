@@ -92,6 +92,12 @@ passport.deserializeUser((obj, next) => {
   next(null, obj);
 });
 
+app.use(function(req, res, next) {
+    if (process.env.HSTS == "true") {
+        res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    }
+    next();
+})
 
 app.use('/authorization-code/callback',
     passport.authenticate('oidc', { failureRedirect: '/error' }),
