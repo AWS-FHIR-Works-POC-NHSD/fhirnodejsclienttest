@@ -94,7 +94,7 @@ passport.deserializeUser((obj, next) => {
 
 app.use(function(req, res, next) {
     if (process.env.HSTS == "true") {
-        res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+        res.setHeader('Strict-Transport-Security', 'max-age=31536000');
     }
     next();
 })
