@@ -38,6 +38,8 @@ SSOCALLBACKURL=
 PASSPORTSECRET=
 AUTHENTICATE=true/false
 HSTS=true/false
+HSTS_MAXAGES=seconds
+HSTS_INCLUDESUBDOMS=true/false
 ```
 
 4) run it

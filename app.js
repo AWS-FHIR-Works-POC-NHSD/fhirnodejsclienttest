@@ -47,6 +47,10 @@ var immrecommendretrievedRouter  = require('./routes/immrecommendget');
 // Load environment variables from .env
 require('dotenv').config()
 
+// Configure the HSTS header settings
+const maxAge = !process.env.HSTS_MAXAGE ? 'max-age=31536000' : 'max-age='+process.env.HSTS_MAXAGE;
+const includeSubdomains = process.env.HSTS_INCLUDESUBDOMS == 'true' ? '; includeSubDomains' : '';
+
 // view engine setup
 //app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -94,7 +98,7 @@ passport.deserializeUser((obj, next) => {
 
 app.use(function(req, res, next) {
     if (process.env.HSTS == "true") {
-        res.setHeader('Strict-Transport-Security', 'max-age=31536000');
+        res.setHeader('Strict-Transport-Security', maxAge + includeSubdomains);
     }
     next();
 })
