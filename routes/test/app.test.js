@@ -4,6 +4,70 @@ process.env.AUTHENTICATE = false; //Doing this ensures that the routes can be ac
 
 describe("Testing the app responses", () => {
 
+	describe("Test the HSTS behaviour", () => {
+
+		test("If HSTS is disabled, there should be no header", async () => {
+			process.env.HSTS = 'false';
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).toBeUndefined();
+		});
+
+		test("If HSTS is enabled, there should be a header", async () => {
+			process.env.HSTS = 'true';
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).toBeDefined();
+		});
+
+		test("If HSTS is enabled and max-age unset, there should be a header with a default value", async () => {
+			process.env.HSTS = 'true';
+			process.env.HSTS_MAXAGES = undefined;
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).toContain('max-age=31536000');
+		});
+
+		test("If HSTS is enabled and max-age set, there should be a header with the specified value", async () => {
+			process.env.HSTS = 'true';
+			process.env.HSTS_MAXAGE = '5000';
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).toContain('max-age=5000');
+		});
+
+		test("If HSTS is enabled, max-age not set and Include Subdomains set, there should be a header including it", async () => {
+			process.env.HSTS = 'true';
+			process.env.HSTS_INCLUDESUBDOMS = 'true';
+			process.env.HSTS_MAXAGE = undefined;
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).toContain('; includeSubDomains');
+		});
+
+		test("If HSTS is enabled,, max-age is set and Include Subdomains set, there should be a header including it", async () => {
+			process.env.HSTS = 'true';
+			process.env.HSTS_INCLUDESUBDOMS = 'true';
+			process.env.HSTS_MAXAGE = '10000';
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).toContain('; includeSubDomains');
+		});
+
+
+		test("If HSTS is enabled, max-age is not set and Include Subdomains is not set, there should be a header without it", async () => {
+			process.env.HSTS = 'true';
+			process.env.HSTS_INCLUDESUBDOMS = 'false';
+			process.env.HSTS_MAXAGE = undefined;
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).not.toContain('; includeSubDomains');
+		});
+
+		test("If HSTS is enabled, max age is set and Include Subdomains is not set, there should be a header without it", async () => {
+			process.env.HSTS = 'true';
+			process.env.HSTS_INCLUDESUBDOMS = 'false';
+			process.env.HSTS_MAXAGE = '5000';
+			const response = await request(app).get("/");
+			expect(response.headers['strict-transport-security']).not.toContain('; includeSubDomains');
+		});
+
+
+	});
+
 	describe("Test the root (/) route", () => {
 
 		test("It should respond (200 OK) to the GET method", async () => {
