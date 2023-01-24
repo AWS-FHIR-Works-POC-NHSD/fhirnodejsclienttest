@@ -193,7 +193,12 @@ function getToken(){
   }
 }
 
-getToken();
+if ( process.env.TOKENREQUIRED == "true" ) {
+  getToken();
+} else
+{
+  console.log('No token required');
+}
 
 var isExpiredToken = false;
 
@@ -217,8 +222,13 @@ function checkToken(){
   }
 }
 
-function run() {
-  setInterval(checkToken, 5000);
+function run() { 
+  if ( process.env.TOKENREQUIRED == "true" ) {
+    setInterval(checkToken, 5000);
+  } else
+  {
+    console.log('No token required');
+  }
 };
 
 run();
